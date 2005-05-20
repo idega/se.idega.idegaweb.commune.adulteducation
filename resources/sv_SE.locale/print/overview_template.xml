@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document margin-bottom="70" margin-left="70" margin-right="70"
+          margin-top="70" size="A4">
+  <font-def family="Helvetica" name="small" size="8" style="normal" />
+
+  <font-def family="Helvetica" name="smallBold" size="8" style="bold" />
+
+  <font-def family="Helvetica" name="normal" size="10" style="normal" />
+
+  <font-def family="Helvetica" name="normalBold" size="10" style="bold" />
+
+  <font-def family="Helvetica" name="address" size="10" style="normal" />
+
+  <font-def family="Helvetica" name="big" size="18" style="bold" />
+
+  <font-def family="Helvetica" name="medium" size="13" style="bold" />
+
+  <paragraph font="big" halign="center" spacing-after="3.0"> ANSÖKAN till
+  Vuxenutbildningen i Nacka </paragraph>
+
+  <paragraph font="small" halign="center" spacing-after="24.0"> Lämnas till
+  din hemkommun för yttrande gällande interkommunal ersättning (gäller ej
+  medborgare i Nacka) </paragraph>
+
+  <table border-style="box" border-width="1.0" columns="3" font="normal"
+         halign="left" padding="3.0" spacing-after="18.0" width="100"
+         widths="33,33,33">
+    <cell valign="top"> <phrase font="small">Efternamn</phrase><br />
+    ${user.lastName} </cell>
+
+    <cell valign="top"> <phrase font="small">Förnamn</phrase><br />
+    ${user.firstName} </cell>
+
+    <cell valign="top"> <phrase font="small">Personnummer</phrase><br />
+    ${user.personalID} </cell>
+
+    <cell colspan="2" valign="top"> <phrase font="small">Adress</phrase><br />
+    ${address} </cell>
+
+    <cell valign="top"> <phrase font="small">Postadress</phrase><br />
+    ${postalCode} </cell>
+
+    <cell valign="top"> <phrase font="small">Telefon (hem)</phrase><br />
+    ${homePhone} </cell>
+
+    <cell valign="top"> <phrase font="small">Telefon (mobil)</phrase><br />
+    ${workPhone} </cell>
+
+    <cell valign="top"> <phrase font="small">Telefon (arbete)</phrase><br />
+    ${mobilePhone} </cell>
+
+    <cell colspan="3" valign="top"> <phrase
+    font="small">E-postadress</phrase><br /> ${email} </cell>
+
+    <cell colspan="3" valign="top"> <phrase
+    font="small">Nationalitet</phrase><br /> [ ${swedish} ] Svensk <space
+    count="10" />[ ${otherNationality} ] Annan: ${otherNation} </cell>
+  </table>
+
+  <paragraph spacing-after="24.0"> <phrase font="medium">Sökta kurser för
+  period ${season.schoolSeasonName}</phrase> <br />${courses} </paragraph>
+
+  <paragraph spacing-after="24.0"> <phrase font="medium">Syfte med
+  studierna:</phrase> <br />${reasons} </paragraph>
+
+  <phrase font="medium">Utbildningsbakgrund:</phrase>
+
+  <table border-style="none" columns="2" font="normal" halign="left"
+         padding="0" spacing-after="12.0" spacing-before="6.0" width="100"
+         widths="50,50">
+    <cell height="70.0" valign="top"> <phrase font="normalBold">Svensk
+    utbildning, slutbetyg/avgångsbetyg</phrase><br /> ${studies} </cell>
+
+    <cell height="70.0" valign="top"> <phrase font="normalBold">Om du har
+    annat modersmål än svenska, vilka kurser har du läst?</phrase><br />
+    ${languages} </cell>
+
+    <cell height="70.0" valign="top"> <phrase font="normalBold">Tidigare
+    studier inom VUX</phrase><br /> ${previousStudies} </cell>
+
+    <cell height="70.0" valign="top"> <phrase
+    font="normalBold">Studiestöd</phrase><br /> ${studySupport} </cell>
+
+    <cell height="70.0" valign="top"> <phrase font="normalBold">Jag ska
+    studera</phrase><br /> ${studying} </cell>
+
+    <cell height="70.0" valign="top"> <phrase
+    font="normalBold">Arbetssituation</phrase><br /> ${workSituation} </cell>
+  </table>
+
+  <paragraph font="medium" halign="center"> OBS! Bifoga betyg till din
+  hemkommun </paragraph>
+
+  <new-page />
+
+  <phrase font="normalBold">Utbildningsbakgrund:</phrase>
+
+  <table border-style="box" border-width="1.0" columns="1" font="normal"
+         halign="left" padding="6" spacing-after="190.0" spacing-before="6.0"
+         width="100" widths="100">
+    <cell valign="top"> Jag vill studera inom vuxenutbildningen i Nacka och är
+    inte folkbokförd där. Mina särskilda skäl är:<br /><br /><br />
+    ______________________________________________________________________________<br /><br />
+    ______________________________________________________________________________<br /><br />
+    ______________________________________________________________________________<br /><br />
+    ______________________________________________________________________________<br /><br /><br />
+    </cell>
+
+    <cell valign="top"> <phrase font="normalBold"> Yttrande från hemkommunen
+    </phrase> <br /><br /><br /> [<space count="2" />] Hemkommunen åtar sig
+    att svara för kostnaderna för elevens utbildning<br /> [<space
+    count="2" />] Hemkommunen svarar ej för kostnaderna för elevens
+    utbildning<br /><br /> Motivering avslag:
+    ___________________________________________________________<br /><br />
+    ______________________________________________________________________________<br /><br /><br /><br />
+    För styrelsen i _________________________ kommun<br /><br /><br />
+    ___________________________ <space count="10" />
+    _________________________________<br /> Datum <space count="46" />
+    Underskrift <br /><br /> <space
+    count="58" />__________________________________<br /> <space
+    count="58" />Namnförtydligande <br /> <br /> </cell>
+  </table>
+
+  <paragraph font="normal" halign="center"> Skickas till: Vuxenutbildningen,
+  131 81 Nacka </paragraph>
+</document>
