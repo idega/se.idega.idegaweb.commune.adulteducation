@@ -5,11 +5,17 @@
   <pomVersion>3</pomVersion>
   <name>idegaWeb Commune Adult Education</name>
   <artifactId>se.idega.idegaweb.commune.adulteducation</artifactId>
-  <currentVersion>1.0.1</currentVersion>
-  <!--currentVersion>1.0-SNAPSHOT</currentVersion-->
+  <!--currentVersion>1.0.1</currentVersion-->
+  <currentVersion>1.0-SNAPSHOT</currentVersion>
+
   <inceptionYear>2004</inceptionYear>
   <shortDescription>Commune Adult Education</shortDescription>
   <versions>
+    <version>
+      <id>1.0.1</id>
+      <name>1.0.1</name>
+      <tag>SE_ADULT_EDUCATION_1_0_1</tag>
+    </version>
   </versions>
   <branches/>
   <developers>
@@ -57,7 +63,7 @@
       <version>2.0</version>
       <type>jar</type>
       <url>http://java.sun.com/products/ejb/docs.html</url>
-      <properties />
+      <properties/>
     </dependency>
     <dependency>
       <groupId>servletapi</groupId>
@@ -75,64 +81,70 @@
       <url>http://java.sun.com/products/jta/jta-1_0_1B-doc</url>
       <properties/>
     </dependency>
-     <dependency>
-         <!-- needed by com.idega.block.pdf and already included there -->
-        <groupId>ujac</groupId>
-        <artifactId>ujac</artifactId>
-        <version>0.9.18</version>
-        <type>jar</type>
-        <url>http://ujac.sourceforge.net/</url>
-        <properties />
+    <dependency>
+      <!-- needed by com.idega.block.pdf and already included there -->
+
+      <groupId>ujac</groupId>
+      <artifactId>ujac</artifactId>
+      <version>0.9.18</version>
+      <type>jar</type>
+      <url>http://ujac.sourceforge.net/</url>
+      <properties/>
     </dependency>
     <dependency>
       <groupId>bundles</groupId>
       <artifactId>com.idega.core</artifactId>
-     <!--HELPER--><version>3.0.5</version><!--HELPER-->
-      <!--HELPERversion>SNAPSHOT</versionHELPER-->
+      <!--version>3.0.5</version-->
+      <version>SNAPSHOT</version>
+
       <type>jar</type>
       <url>http://www.idega.com/</url>
       <properties>
         <eclipse.dependency>true</eclipse.dependency>
       </properties>
-	</dependency>
-   <dependency>
+    </dependency>
+    <dependency>
       <groupId>bundles</groupId>
       <artifactId>com.idega.block.school</artifactId>
-      <!--HELPER--><version>1.0.1</version><!--HELPER-->
-      <!--HELPERversion>SNAPSHOT</versionHELPER-->
+      <!--version>1.0.1</version-->
+      <version>SNAPSHOT</version>
+
       <type>jar</type>
       <url>http://www.idega.com/</url>
       <properties>
         <eclipse.dependency>true</eclipse.dependency>
       </properties>
-    </dependency> 
-     <dependency>
+    </dependency>
+    <dependency>
       <groupId>bundles</groupId>
       <artifactId>com.idega.block.process</artifactId>
-      <!--HELPER--><version>1.0.1</version><!--HELPER-->
-      <!--HELPERversion>SNAPSHOT</versionHELPER-->
+      <!--version>1.0.1</version-->
+      <version>SNAPSHOT</version>
+
       <type>jar</type>
       <url>http://www.idega.com/</url>
       <properties>
         <eclipse.dependency>true</eclipse.dependency>
       </properties>
     </dependency>
-     <dependency>
+    <dependency>
       <groupId>bundles</groupId>
       <artifactId>com.idega.block.pdf</artifactId>
-      <!--HELPER--><version>1.0.1</version><!--HELPER-->
-      <!--HELPERversion>SNAPSHOT</versionHELPER-->
+      <!--version>1.0.1</version-->
+      <version>SNAPSHOT</version>
+
       <type>jar</type>
       <url>http://www.idega.com/</url>
       <properties>
         <eclipse.dependency>true</eclipse.dependency>
       </properties>
     </dependency>
-   <dependency>
+    <dependency>
       <groupId>bundles</groupId>
       <artifactId>se.idega.idegaweb.commune</artifactId>
-      <!--HELPER--><version>1.0.1</version><!--HELPER-->
-      <!--HELPERversion>SNAPSHOT</versionHELPER-->
+      <!--version>1.0.1</version-->
+      <version>SNAPSHOT</version>
+
       <type>jar</type>
       <url>http://www.idega.com/</url>
       <properties>
@@ -142,8 +154,9 @@
     <dependency>
       <groupId>bundles</groupId>
       <artifactId>se.idega.idegaweb.commune.accounting</artifactId>
-      <!--HELPER--><version>1.0.1</version><!--HELPER-->
-      <!--HELPERversion>SNAPSHOT</versionHELPER-->
+      <!--version>1.0.1</version->
+      <version>SNAPSHOT</version>
+
       <type>jar</type>
       <url>http://www.idega.com/</url>
       <properties>
