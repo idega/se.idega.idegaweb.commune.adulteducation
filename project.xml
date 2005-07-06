@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project>
-  <extend>${base.project.dir}/base-project.xml</extend>
+  <extend>${base.project.dir}/block-dependencies.xml</extend>
   <pomVersion>3</pomVersion>
   <name>idegaWeb Commune Adult Education</name>
   <artifactId>se.idega.idegaweb.commune.adulteducation</artifactId>
-  <!--currentVersion>1.0.1</currentVersion-->
-  <currentVersion>1.0-SNAPSHOT</currentVersion>
+  <currentVersion>1.0.1</currentVersion>
+  <!--currentVersion>1.0-SNAPSHOT</currentVersion-->
 
   <inceptionYear>2004</inceptionYear>
   <shortDescription>Commune Adult Education</shortDescription>
@@ -73,6 +73,13 @@
       <url>http://java.sun.com/products/servlet/docs.html</url>
       <properties/>
     </dependency>
+   <dependency>
+      <groupId>poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>2.5-final-20040428</version>
+      <type>jar</type>
+      <url>http://jakarta.apache.org/poi/</url>
+    </dependency>
     <dependency>
       <groupId>jta</groupId>
       <artifactId>jta</artifactId>
@@ -94,8 +101,32 @@
     <dependency>
       <groupId>bundles</groupId>
       <artifactId>com.idega.core</artifactId>
-      <!--version>3.0.5</version-->
-      <version>SNAPSHOT</version>
+      <!--HELPER--><version>3.0.5</version><!--HELPER-->
+      <!--HELPERversion>SNAPSHOT</versionHELPER-->
+
+      <type>jar</type>
+      <url>http://www.idega.com/</url>
+      <properties>
+        <eclipse.dependency>true</eclipse.dependency>
+      </properties>
+    </dependency>
+    <dependency>
+      <groupId>bundles</groupId>
+      <artifactId>com.idega.builder</artifactId>
+      <!--HELPER--><version>1.4.2</version><!--HELPER-->
+      <!--HELPERversion>SNAPSHOT</versionHELPER-->
+
+      <type>jar</type>
+      <url>http://www.idega.com/</url>
+      <properties>
+        <eclipse.dependency>true</eclipse.dependency>
+      </properties>
+    </dependency>
+    <dependency>
+      <groupId>bundles</groupId>
+      <artifactId>com.idega.user</artifactId>
+      <!--HELPER--><version>1.1.2</version><!--HELPER-->
+      <!--HELPERversion>SNAPSHOT</versionHELPER-->
 
       <type>jar</type>
       <url>http://www.idega.com/</url>
@@ -106,8 +137,8 @@
     <dependency>
       <groupId>bundles</groupId>
       <artifactId>com.idega.block.school</artifactId>
-      <!--version>1.0.1</version-->
-      <version>SNAPSHOT</version>
+      <!--HELPER--><version>1.0.1</version><!--HELPER-->
+      <!--HELPERversion>SNAPSHOT</versionHELPER-->
 
       <type>jar</type>
       <url>http://www.idega.com/</url>
@@ -118,8 +149,8 @@
     <dependency>
       <groupId>bundles</groupId>
       <artifactId>com.idega.block.process</artifactId>
-      <!--version>1.0.1</version-->
-      <version>SNAPSHOT</version>
+      <!--HELPER--><version>1.0.1</version><!--HELPER-->
+      <!--HELPERversion>SNAPSHOT</versionHELPER-->
 
       <type>jar</type>
       <url>http://www.idega.com/</url>
@@ -130,8 +161,8 @@
     <dependency>
       <groupId>bundles</groupId>
       <artifactId>com.idega.block.pdf</artifactId>
-      <!--version>1.0.1</version-->
-      <version>SNAPSHOT</version>
+      <!--HELPER--><version>1.0.1</version><!--HELPER-->
+      <!--HELPERversion>SNAPSHOT</versionHELPER-->
 
       <type>jar</type>
       <url>http://www.idega.com/</url>
@@ -142,8 +173,20 @@
     <dependency>
       <groupId>bundles</groupId>
       <artifactId>se.idega.idegaweb.commune</artifactId>
-      <!--version>1.0.1</version-->
-      <version>SNAPSHOT</version>
+      <!--HELPER--><version>1.0.1</version><!--HELPER-->
+      <!--HELPERversion>SNAPSHOT</versionHELPER-->
+
+      <type>jar</type>
+      <url>http://www.idega.com/</url>
+      <properties>
+        <eclipse.dependency>true</eclipse.dependency>
+      </properties>
+    </dependency>
+    <dependency>
+      <groupId>bundles</groupId>
+      <artifactId>se.idega.idegaweb.commune.school</artifactId>
+      <!--HELPER--><version>1.0.1</version><!--HELPER-->
+      <!--HELPERversion>SNAPSHOT</versionHELPER-->
 
       <type>jar</type>
       <url>http://www.idega.com/</url>
@@ -154,8 +197,8 @@
     <dependency>
       <groupId>bundles</groupId>
       <artifactId>se.idega.idegaweb.commune.accounting</artifactId>
-      <!--version>1.0.1</version-->
-      <version>SNAPSHOT</version>
+      <!--HELPER--><version>1.0.1</version><!--HELPER-->
+      <!--HELPERversion>SNAPSHOT</versionHELPER-->
 
       <type>jar</type>
       <url>http://www.idega.com/</url>
@@ -163,7 +206,7 @@
         <eclipse.dependency>true</eclipse.dependency>
       </properties>
     </dependency>
-  </dependencies>
+   </dependencies>
   <build>
     <sourceDirectory>src/java</sourceDirectory>
     <unitTestSourceDirectory>src/test</unitTestSourceDirectory>
