@@ -47,7 +47,7 @@
   </classpathentry>
   <classpathentry kind="var" path="MAVEN_REPO/servlets.com/jars/cos-05Nov2002.jar">
   </classpathentry>
-  <classpathentry kind="var" path="MAVEN_REPO/itext/jars/itext-0.99.jar">
+  <classpathentry kind="var" path="MAVEN_REPO/itextpdf/jars/itext-paulo-139.jar">
   </classpathentry>
   <classpathentry kind="var" path="MAVEN_REPO/jspapi/jars/jsp-api-2.0.jar">
   </classpathentry>
