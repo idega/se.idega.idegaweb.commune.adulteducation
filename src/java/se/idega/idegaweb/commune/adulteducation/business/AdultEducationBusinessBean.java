@@ -1,5 +1,5 @@
 /*
- * $Id: AdultEducationBusinessBean.java,v 1.49 2005/10/31 17:21:22 palli Exp $
+ * $Id: AdultEducationBusinessBean.java,v 1.50 2006/03/08 10:59:38 dainis Exp $
  * Created on 27.4.2005
  * 
  * Copyright (C) 2005 Idega Software hf. All Rights Reserved.
@@ -21,11 +21,9 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-
 import javax.ejb.CreateException;
 import javax.ejb.FinderException;
 import javax.ejb.RemoveException;
-
 import se.idega.idegaweb.commune.accounting.school.business.StudyPathBusiness;
 import se.idega.idegaweb.commune.adulteducation.AdultEducationConstants;
 import se.idega.idegaweb.commune.adulteducation.data.AdultEducationChoice;
@@ -45,7 +43,6 @@ import se.idega.idegaweb.commune.adulteducation.data.SchoolCoursePackage;
 import se.idega.idegaweb.commune.adulteducation.data.SchoolCoursePackageHome;
 import se.idega.idegaweb.commune.business.CommuneUserBusiness;
 import se.idega.idegaweb.commune.message.business.CommuneMessageBusiness;
-
 import com.idega.block.pdf.business.PrintingContext;
 import com.idega.block.pdf.business.PrintingService;
 import com.idega.block.process.business.CaseBusiness;
@@ -90,10 +87,10 @@ import com.idega.util.IWTimestamp;
 /**
  * A collection of business methods associated with the Adult education block.
  * 
- * Last modified: $Date: 2005/10/31 17:21:22 $ by $Author: palli $
+ * Last modified: $Date: 2006/03/08 10:59:38 $ by $Author: dainis $
  * 
  * @author <a href="mailto:laddi@idega.com">laddi</a>
- * @version $Revision: 1.49 $
+ * @version $Revision: 1.50 $
  */
 public class AdultEducationBusinessBean extends CaseBusinessBean implements CaseBusiness, AdultEducationBusiness {
 
@@ -351,6 +348,18 @@ public class AdultEducationBusinessBean extends CaseBusinessBean implements Case
 			fe.printStackTrace();
 			return new ArrayList();
 		}
+	}
+	
+	public Collection findAvailableCourses(SchoolType schoolType, SchoolSeason schoolSeason, 
+			SchoolStudyPathGroup studyPathGroup, SchoolStudyPath studyPath, School school ) {
+		try {	
+			return getCourseHome().findAllAvailableCoursesByParameters(schoolType, schoolSeason, studyPathGroup, studyPath, school);
+		}
+		catch (FinderException fe) {
+			fe.printStackTrace();
+			return new ArrayList();
+		}		
+		
 	}
 
 	public Collection getCoursesWithStudents(Object season, Object school, Object group) {
@@ -884,6 +893,18 @@ public class AdultEducationBusinessBean extends CaseBusinessBean implements Case
 			throw new IBORuntimeException(re);
 		}
 	}
+	
+	public Collection getStydyPathsBySchoolTypeAndSchoolStudyPathGroup(SchoolType type, SchoolStudyPathGroup group) {
+		try {
+			if (group == null || type == null) {
+				return new ArrayList();			
+			}
+			return getStudyPathBusiness().findStudyPathsBySchoolTypeAndSchoolStudyPathGroup(type, group);
+		} catch (RemoteException re) {
+			throw new IBORuntimeException(re);
+		}		
+	}
+	
 
 	/**
 	 * Stores and returns an AdultEducationCourse instance with the values
