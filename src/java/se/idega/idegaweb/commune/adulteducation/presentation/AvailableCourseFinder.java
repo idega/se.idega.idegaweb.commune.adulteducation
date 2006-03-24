@@ -68,6 +68,7 @@ public class AvailableCourseFinder extends AdultEducationBlock {
 			table.setWidth(Table.HUNDRED_PERCENT);
 			table.setCellpadding(3);
 			table.setCellspacing(0);
+			table.setBorder(1);
 			form.add(table);
 			
 			table.add(getSmallHeader(localize("type", "Type") + ":"), 1, 1);
@@ -140,7 +141,7 @@ public class AvailableCourseFinder extends AdultEducationBlock {
 				school.setSelectedElement(iSchoolPK.toString());
 			}
 			table.add(school, 2, 2);
-			
+			table.mergeCells(2, 2, 3, 2);			
 			
 			table.setAlignment(3, 3, "right");
 			SubmitButton search = (SubmitButton) getButton(new SubmitButton(localize("search", "Search"),
