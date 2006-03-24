@@ -68,7 +68,6 @@ public class AvailableCourseFinder extends AdultEducationBlock {
 			table.setWidth(Table.HUNDRED_PERCENT);
 			table.setCellpadding(3);
 			table.setCellspacing(0);
-			table.setBorder(1);
 			form.add(table);
 			
 			table.add(getSmallHeader(localize("type", "Type") + ":"), 1, 1);
