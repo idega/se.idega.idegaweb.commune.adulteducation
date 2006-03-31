@@ -1,5 +1,5 @@
 /*
- * $Id: AdultEducationBusinessBean.java,v 1.51 2006/03/31 18:01:45 dainis Exp $
+ * $Id: AdultEducationBusinessBean.java,v 1.52 2006/03/31 18:04:41 dainis Exp $
  * Created on 27.4.2005
  * 
  * Copyright (C) 2005 Idega Software hf. All Rights Reserved.
@@ -87,10 +87,10 @@ import com.idega.util.IWTimestamp;
 /**
  * A collection of business methods associated with the Adult education block.
  * 
- * Last modified: $Date: 2006/03/31 18:01:45 $ by $Author: dainis $
+ * Last modified: $Date: 2006/03/31 18:04:41 $ by $Author: dainis $
  * 
  * @author <a href="mailto:laddi@idega.com">laddi</a>
- * @version $Revision: 1.51 $
+ * @version $Revision: 1.52 $
  */
 public class AdultEducationBusinessBean extends CaseBusinessBean implements CaseBusiness, AdultEducationBusiness {
 
@@ -716,6 +716,9 @@ public class AdultEducationBusinessBean extends CaseBusinessBean implements Case
 		}
 	}
 
+	public Collection getAvailableSchools(Object studyPathPK, Object seasonPK) {
+		return getAvailableSchools(studyPathPK, seasonPK, null);
+	}
 	public Collection getAvailableSchools(Object studyPathPK, Object seasonPK, Object studyPathGroupPK) {
 		try {
 			return getSchoolBusiness().getSchoolHome().findAllByInQuery(
