@@ -4,20 +4,36 @@
 package se.idega.idegaweb.commune.adulteducation.data;
 
 import java.sql.Date;
+import java.util.Collection;
+import javax.ejb.FinderException;
+import com.idega.block.process.data.Case;
 import com.idega.block.school.data.School;
+import com.idega.block.school.data.SchoolBMPBean;
+import com.idega.block.school.data.SchoolClass;
+import com.idega.block.school.data.SchoolClassMember;
 import com.idega.block.school.data.SchoolSeason;
 import com.idega.block.school.data.SchoolStudyPath;
+import com.idega.block.school.data.SchoolStudyPathBMPBean;
+import com.idega.block.school.data.SchoolStudyPathGroup;
+import com.idega.block.school.data.SchoolType;
+import com.idega.data.GenericEntity;
 import com.idega.data.IDOEntity;
+import com.idega.data.IDORelationshipException;
+import com.idega.data.query.InCriteria;
+import com.idega.data.query.MatchCriteria;
+import com.idega.data.query.SelectQuery;
+import com.idega.data.query.Table;
+import com.idega.data.query.WildCardColumn;
 
 
 /**
  * <p>
  * TODO Dainis Describe Type AdultEducationCourse
  * </p>
- *  Last modified: $Date: 2006/03/08 10:58:07 $ by $Author: dainis $
+ *  Last modified: $Date: 2006/03/31 18:01:05 $ by $Author: dainis $
  * 
  * @author <a href="mailto:Dainis@idega.com">Dainis</a>
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public interface AdultEducationCourse extends IDOEntity {
 
