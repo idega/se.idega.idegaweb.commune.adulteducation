@@ -4,9 +4,7 @@
 package se.idega.idegaweb.commune.adulteducation.data;
 
 import java.util.Collection;
-
 import javax.ejb.FinderException;
-
 import com.idega.block.school.data.School;
 import com.idega.block.school.data.SchoolSeason;
 import com.idega.block.school.data.SchoolStudyPath;
@@ -19,10 +17,10 @@ import com.idega.data.IDOFactory;
  * <p>
  * TODO Dainis Describe Type AdultEducationCourseHomeImpl
  * </p>
- *  Last modified: $Date: 2006/04/02 11:16:46 $ by $Author: laddi $
+ *  Last modified: $Date: 2006/04/05 11:59:24 $ by $Author: dainis $
  * 
  * @author <a href="mailto:Dainis@idega.com">Dainis</a>
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class AdultEducationCourseHomeImpl extends IDOFactory implements AdultEducationCourseHome {
 
