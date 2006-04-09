@@ -1,5 +1,5 @@
 /*
- * $Id: AdultEducationSessionBean.java,v 1.13 2005/08/10 00:19:28 laddi Exp $
+ * $Id: AdultEducationSessionBean.java,v 1.14 2006/04/09 11:41:07 laddi Exp $
  * Created on May 24, 2005
  *
  * Copyright (C) 2005 Idega Software hf. All Rights Reserved.
@@ -34,10 +34,10 @@ import com.idega.util.IWTimestamp;
 
 
 /**
- * Last modified: $Date: 2005/08/10 00:19:28 $ by $Author: laddi $
+ * Last modified: $Date: 2006/04/09 11:41:07 $ by $Author: laddi $
  * 
  * @author <a href="mailto:laddi@idega.com">laddi</a>
- * @version $Revision: 1.13 $
+ * @version $Revision: 1.14 $
  */
 public class AdultEducationSessionBean extends IBOSessionBean  implements AdultEducationSession{
 	
@@ -91,17 +91,17 @@ public class AdultEducationSessionBean extends IBOSessionBean  implements AdultE
 	}
 	
 	public SchoolSeason getSchoolSeason(boolean useDefaultIfNotSet) {
-		if (iSeason == null && iSeasonPK != null) {
+		if (this.iSeason == null && this.iSeasonPK != null) {
 			try {
-				iSeason = getSchoolBusiness().getSchoolSeason(new Integer(iSeasonPK.toString()));
+				this.iSeason = getSchoolBusiness().getSchoolSeason(new Integer(this.iSeasonPK.toString()));
 			}
 			catch (RemoteException re) {
-				iSeason = null;
+				this.iSeason = null;
 			}
 		}
-		else if (iSeason == null && useDefaultIfNotSet) {
+		else if (this.iSeason == null && useDefaultIfNotSet) {
 			try {
-				iSeason = getSchoolBusiness().getSchoolSeasonHome().findNextSeason(getSchoolBusiness().getCategoryAdultEducation(), new IWTimestamp().getDate());
+				this.iSeason = getSchoolBusiness().getSchoolSeasonHome().findNextSeason(getSchoolBusiness().getCategoryAdultEducation(), new IWTimestamp().getDate());
 			}
 			catch (FinderException fe) {
 				//Nothing found...
@@ -110,276 +110,276 @@ public class AdultEducationSessionBean extends IBOSessionBean  implements AdultE
 				throw new IBORuntimeException(re);
 			}
 		}
-		return iSeason;
+		return this.iSeason;
 	}
 
 	public void setSeason(Object seasonPK) {
-		if (iSeasonPK != null && !iSeasonPK.equals(seasonPK)) {
+		if (this.iSeasonPK != null && !this.iSeasonPK.equals(seasonPK)) {
 			setSchoolClass(null);
 			setCourse(null);
 			setCourseSeason(null);
 		}
-		iSeasonPK = seasonPK;
-		iSeason = null;
+		this.iSeasonPK = seasonPK;
+		this.iSeason = null;
 	}
 	
 	public SchoolSeason getCourseSeason() {
-		if (iCourseSeason == null && iCourseSeasonPK != null) {
+		if (this.iCourseSeason == null && this.iCourseSeasonPK != null) {
 			try {
-				iCourseSeason = getSchoolBusiness().getSchoolSeason(new Integer(iCourseSeasonPK.toString()));
+				this.iCourseSeason = getSchoolBusiness().getSchoolSeason(new Integer(this.iCourseSeasonPK.toString()));
 			}
 			catch (RemoteException re) {
-				iCourseSeason = null;
+				this.iCourseSeason = null;
 			}
 		}
-		return iCourseSeason;
+		return this.iCourseSeason;
 	}
 
 	public void setCourseSeason(Object seasonPK) {
-		iCourseSeasonPK = seasonPK;
-		iCourseSeason = null;
+		this.iCourseSeasonPK = seasonPK;
+		this.iCourseSeason = null;
 	}
 	
 	public SchoolType getSchoolType() {
-		if (iSchoolType == null && iSchoolTypePK != null) {
+		if (this.iSchoolType == null && this.iSchoolTypePK != null) {
 			try {
-				iSchoolType = getSchoolBusiness().getSchoolType(new Integer(iSchoolTypePK.toString()));
+				this.iSchoolType = getSchoolBusiness().getSchoolType(new Integer(this.iSchoolTypePK.toString()));
 			}
 			catch (RemoteException re) {
-				iSchoolType = null;
+				this.iSchoolType = null;
 			}
 		}
-		return iSchoolType;
+		return this.iSchoolType;
 	}
 
 	public void setSchoolType(Object schoolTypePK) {
-		iSchoolTypePK = schoolTypePK;
-		iSchoolType= null;
+		this.iSchoolTypePK = schoolTypePK;
+		this.iSchoolType= null;
 	}
 	
 	public SchoolStudyPathGroup getStudyPathGroup() {
-		if (iStudyPathGroup == null && iStudyPathGroupPK != null) {
+		if (this.iStudyPathGroup == null && this.iStudyPathGroupPK != null) {
 			try {
-				iStudyPathGroup = getStudyPathBusiness().findStudyPathGroup(new Integer(iStudyPathGroupPK.toString()));
+				this.iStudyPathGroup = getStudyPathBusiness().findStudyPathGroup(new Integer(this.iStudyPathGroupPK.toString()));
 			}
 			catch (RemoteException re) {
-				iStudyPathGroup = null;
+				this.iStudyPathGroup = null;
 			}
 		}
-		return iStudyPathGroup;
+		return this.iStudyPathGroup;
 	}
 
 	public void setStudyPathGroup(Object studyPathGroupPK) {
-		if (iStudyPathGroupPK != null && !iStudyPathGroupPK.equals(studyPathGroupPK)) {
+		if (this.iStudyPathGroupPK != null && !this.iStudyPathGroupPK.equals(studyPathGroupPK)) {
 			setSchoolClass(null);
 			setCourse(null);
 		}
-		iStudyPathGroupPK = studyPathGroupPK;
-		iStudyPathGroup= null;
+		this.iStudyPathGroupPK = studyPathGroupPK;
+		this.iStudyPathGroup= null;
 	}
 	
 	public AdultEducationCourse getCourse() {
-		if (iCourse == null && iCoursePK != null) {
+		if (this.iCourse == null && this.iCoursePK != null) {
 			try {
-				iCourse = getAdultEducationBusiness().getCourse(iCoursePK);
+				this.iCourse = getAdultEducationBusiness().getCourse(this.iCoursePK);
 			}
 			catch (RemoteException re) {
-				iCourse = null;
+				this.iCourse = null;
 			}
 			catch (FinderException fe) {
 				fe.printStackTrace();
-				iCourse = null;
+				this.iCourse = null;
 			}
 		}
-		return iCourse;
+		return this.iCourse;
 	}
 
 	public void setCourse(Object coursePK) {
-		iCoursePK = coursePK;
-		iCourse= null;
+		this.iCoursePK = coursePK;
+		this.iCourse= null;
 	}
 	
 	public SchoolClass getSchoolClass() {
-		if (iSchoolClass == null && iSchoolClassPK != null) {
+		if (this.iSchoolClass == null && this.iSchoolClassPK != null) {
 			try {
-				iSchoolClass = getSchoolBusiness().getSchoolClassHome().findByPrimaryKey(new Integer(iSchoolClassPK.toString()));
+				this.iSchoolClass = getSchoolBusiness().getSchoolClassHome().findByPrimaryKey(new Integer(this.iSchoolClassPK.toString()));
 			}
 			catch (RemoteException re) {
-				iSchoolClass = null;
+				this.iSchoolClass = null;
 			}
 			catch (FinderException fe) {
 				fe.printStackTrace();
-				iSchoolClass = null;
+				this.iSchoolClass = null;
 			}
 		}
-		return iSchoolClass;
+		return this.iSchoolClass;
 	}
 
 	public void setSchoolClass(Object schoolClassPK) {
-		iSchoolClassPK = schoolClassPK;
-		iSchoolClass= null;
+		this.iSchoolClassPK = schoolClassPK;
+		this.iSchoolClass= null;
 	}
 	
 	public School getChosenSchool() {
-		if (iSchool == null && iSchoolPK != null) {
+		if (this.iSchool == null && this.iSchoolPK != null) {
 			try {
-				iSchool = getSchoolBusiness().getSchool(iSchoolPK);
+				this.iSchool = getSchoolBusiness().getSchool(this.iSchoolPK);
 			}
 			catch (RemoteException re) {
-				iSchool = null;
+				this.iSchool = null;
 			}
 		}
-		return iSchool;
+		return this.iSchool;
 	}
 
 	public void setChosenSchool(Object schoolPK) {
-		iSchoolPK = schoolPK;
-		iSchool= null;
+		this.iSchoolPK = schoolPK;
+		this.iSchool= null;
 	}
 	
 	public CoursePackage getCoursePackage() {
-		if (iCoursePackage == null && iCoursePackagePK != null) {
+		if (this.iCoursePackage == null && this.iCoursePackagePK != null) {
 			try {
-				iCoursePackage = getAdultEducationBusiness().getCoursePackage(iCoursePackagePK);
+				this.iCoursePackage = getAdultEducationBusiness().getCoursePackage(this.iCoursePackagePK);
 			}
 			catch (RemoteException re) {
-				iCoursePackage = null;
+				this.iCoursePackage = null;
 			}
 			catch (FinderException fe) {
-				iCoursePackage = null;
+				this.iCoursePackage = null;
 			}
 		}
-		return iCoursePackage;
+		return this.iCoursePackage;
 	}
 
 	public void setCoursePackage(Object coursePackagePK) {
-		iCoursePackagePK = coursePackagePK;
-		iCoursePackage= null;
+		this.iCoursePackagePK = coursePackagePK;
+		this.iCoursePackage= null;
 	}
 	
 	public SchoolCoursePackage getSchoolCoursePackage() {
-		if (iSchoolCoursePackage == null && iSchoolCoursePackagePK != null) {
+		if (this.iSchoolCoursePackage == null && this.iSchoolCoursePackagePK != null) {
 			try {
-				iSchoolCoursePackage = getAdultEducationBusiness().getSchoolCoursePackage(iSchoolCoursePackagePK);
+				this.iSchoolCoursePackage = getAdultEducationBusiness().getSchoolCoursePackage(this.iSchoolCoursePackagePK);
 			}
 			catch (RemoteException re) {
-				iSchoolCoursePackage = null;
+				this.iSchoolCoursePackage = null;
 			}
 			catch (FinderException fe) {
-				iSchoolCoursePackage = null;
+				this.iSchoolCoursePackage = null;
 			}
 		}
-		return iSchoolCoursePackage;
+		return this.iSchoolCoursePackage;
 	}
 
 	public void setSchoolCoursePackage(Object schoolCoursePackagePK) {
-		iSchoolCoursePackagePK = schoolCoursePackagePK;
-		iSchoolCoursePackage= null;
+		this.iSchoolCoursePackagePK = schoolCoursePackagePK;
+		this.iSchoolCoursePackage= null;
 	}
 	
 	public SchoolClassMember getSchoolClassMember() {
-		if (iSchoolClassMember == null && iSchoolClassMemberPK != null) {
+		if (this.iSchoolClassMember == null && this.iSchoolClassMemberPK != null) {
 			try {
-				iSchoolClassMember = getSchoolBusiness().getSchoolClassMemberHome().findByPrimaryKey(new Integer(iSchoolClassMemberPK.toString()));
+				this.iSchoolClassMember = getSchoolBusiness().getSchoolClassMemberHome().findByPrimaryKey(new Integer(this.iSchoolClassMemberPK.toString()));
 			}
 			catch (RemoteException re) {
-				iSchoolClassMember = null;
+				this.iSchoolClassMember = null;
 			}
 			catch (FinderException fe) {
 				fe.printStackTrace();
-				iSchoolClassMember = null;
+				this.iSchoolClassMember = null;
 			}
 		}
-		return iSchoolClassMember;
+		return this.iSchoolClassMember;
 	}
 
 	public void setSchoolClassMember(Object schoolClassMemberPK) {
-		iSchoolClassMemberPK = schoolClassMemberPK;
-		iSchoolClassMember= null;
+		this.iSchoolClassMemberPK = schoolClassMemberPK;
+		this.iSchoolClassMember= null;
 	}
 	
 	public Date getFromDate() {
-		if (iFromDate == null) {
-			iFromDate = new IWTimestamp().getDate();
+		if (this.iFromDate == null) {
+			this.iFromDate = new IWTimestamp().getDate();
 		}
-		return iFromDate;
+		return this.iFromDate;
 	}
 	
 	public void setFromDate(Date date) {
-		iFromDate = date;
+		this.iFromDate = date;
 	}
 	
 	public Date getToDate() {
-		if (iToDate == null) {
-			iToDate = new IWTimestamp().getDate();
+		if (this.iToDate == null) {
+			this.iToDate = new IWTimestamp().getDate();
 		}
-		return iToDate;
+		return this.iToDate;
 	}
 	
 	public void setToDate(Date date) {
-		iToDate = date;
+		this.iToDate = date;
 	}
 	
 	public int getSort() {
-		return iSort;
+		return this.iSort;
 	}
 	
 	public void setSort(int sort) {
-		iSort = sort;
+		this.iSort = sort;
 	}
 	
 	public AdultEducationChoice getChoice() {
-		if (iChoice == null && iChoicePK != null) {
+		if (this.iChoice == null && this.iChoicePK != null) {
 			try {
-				iChoice = getAdultEducationBusiness().getChoice(new Integer(iChoicePK.toString()));
+				this.iChoice = getAdultEducationBusiness().getChoice(new Integer(this.iChoicePK.toString()));
 			}
 			catch (FinderException fe) {
 				fe.printStackTrace();
-				iChoice = null;
+				this.iChoice = null;
 			}
 			catch (RemoteException re) {
-				iChoice = null;
+				this.iChoice = null;
 			}
 		}
-		return iChoice;
+		return this.iChoice;
 	}
 
 	public void setChoice(Object choicePK) {
-		iChoicePK = choicePK;
-		iChoice = null;
+		this.iChoicePK = choicePK;
+		this.iChoice = null;
 	}
 
 	public User getStudent() {
-		if (iUser == null && iUserPK != null) {
+		if (this.iUser == null && this.iUserPK != null) {
 			try {
-				iUser = getUserBusiness().getUser(new Integer(iUserPK.toString()));
+				this.iUser = getUserBusiness().getUser(new Integer(this.iUserPK.toString()));
 			}
 			catch (RemoteException re) {
-				iUser = null;
+				this.iUser = null;
 			}
 		}
-		return iUser;
+		return this.iUser;
 	}
 
 	public void setStudent(String userPK) {
-		iUserPK = userPK;
-		iUser = null;
+		this.iUserPK = userPK;
+		this.iUser = null;
 	}
 
 	public void setStudentUniqueID(String userUniqueID) {
-		iUserUniqueID = userUniqueID;
+		this.iUserUniqueID = userUniqueID;
 		try {
-			iUser = getUserBusiness().getUserByUniqueId(iUserUniqueID);
-			iUserPK = iUser.getPrimaryKey();
+			this.iUser = getUserBusiness().getUserByUniqueId(this.iUserUniqueID);
+			this.iUserPK = this.iUser.getPrimaryKey();
 		}
 		catch (FinderException fe) {
 			fe.printStackTrace();
-			iUser = null;
-			iUserPK = null;
+			this.iUser = null;
+			this.iUserPK = null;
 		}
 		catch (RemoteException re) {
-			iUser = null;
-			iUserPK = null;
+			this.iUser = null;
+			this.iUserPK = null;
 		}
 	}
 	
@@ -388,21 +388,21 @@ public class AdultEducationSessionBean extends IBOSessionBean  implements AdultE
 			User user = getUserContext().getCurrentUser();
 			Object userPK = user.getPrimaryKey();
 			
-			if (iAdministratorPK != null && iAdministratorPK.equals(userPK)) {
-				if (iCurrentSchool != null) {
-					return iCurrentSchool;
+			if (this.iAdministratorPK != null && this.iAdministratorPK.equals(userPK)) {
+				if (this.iCurrentSchool != null) {
+					return this.iCurrentSchool;
 				}
 				else {
 					return getSchoolFromUser(user);
 				}
 			}
 			else {
-				iAdministratorPK = userPK;
+				this.iAdministratorPK = userPK;
 				return getSchoolFromUser(user);
 			}
 		}
 		else {
-			return iCurrentSchool;	
+			return this.iCurrentSchool;	
 		}
 	}
 
@@ -411,8 +411,8 @@ public class AdultEducationSessionBean extends IBOSessionBean  implements AdultE
 	 * @return int
 	 */
 	public Object getSchoolPK() {
-		if (iCurrentSchool != null) {
-			return iCurrentSchool.getPrimaryKey();
+		if (this.iCurrentSchool != null) {
+			return this.iCurrentSchool.getPrimaryKey();
 		}
 		return null;
 	}
@@ -422,7 +422,7 @@ public class AdultEducationSessionBean extends IBOSessionBean  implements AdultE
 			try {
 				School school = getAdultEducationBusiness().getSchoolForUser(user);
 				if (school != null) {
-					iCurrentSchool = school;
+					this.iCurrentSchool = school;
 				}
 			}
 			catch (FinderException fe) {
@@ -432,7 +432,7 @@ public class AdultEducationSessionBean extends IBOSessionBean  implements AdultE
 				throw new IBORuntimeException(re);
 			}
 		}
-		return iCurrentSchool;
+		return this.iCurrentSchool;
 	}
 
 	private CommuneUserBusiness getUserBusiness() {

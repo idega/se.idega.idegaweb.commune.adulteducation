@@ -1,5 +1,5 @@
 /*
- * $Id: PDFOverviewCreator.java,v 1.1 2005/05/16 08:57:06 laddi Exp $
+ * $Id: PDFOverviewCreator.java,v 1.2 2006/04/09 11:41:07 laddi Exp $
  * Created on May 15, 2005
  *
  * Copyright (C) 2005 Idega Software hf. All Rights Reserved.
@@ -31,10 +31,10 @@ import com.idega.presentation.IWContext;
 
 
 /**
- * Last modified: $Date: 2005/05/16 08:57:06 $ by $Author: laddi $
+ * Last modified: $Date: 2006/04/09 11:41:07 $ by $Author: laddi $
  * 
  * @author <a href="mailto:laddi@idega.com">laddi</a>
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class PDFOverviewCreator implements MediaWritable {
 
@@ -53,8 +53,8 @@ public class PDFOverviewCreator implements MediaWritable {
 	public void init(HttpServletRequest req, IWContext iwc) {
 		try {
 			SchoolSeason season = getSchoolBusiness(iwc).getSchoolSeason(iwc.getParameter(AdultEducationBlock.PARAMETER_SCHOOL_SEASON));
-			buffer = new MemoryFileBuffer();
-		  OutputStream mos = new MemoryOutputStream(buffer);
+			this.buffer = new MemoryFileBuffer();
+		  OutputStream mos = new MemoryOutputStream(this.buffer);
 		 
 		  PrintingContext pcx = new ChoiceOverviewContext(iwc, season, iwc.getCurrentUser(), iwc.getCurrentLocale());
 		  pcx.setDocumentStream(mos);
@@ -69,8 +69,8 @@ public class PDFOverviewCreator implements MediaWritable {
 	 * @see com.idega.io.MediaWritable#writeTo(java.io.OutputStream)
 	 */
 	public void writeTo(OutputStream out) throws IOException {
-		if (buffer != null) {
-			MemoryInputStream mis = new MemoryInputStream(buffer);
+		if (this.buffer != null) {
+			MemoryInputStream mis = new MemoryInputStream(this.buffer);
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			while (mis.available() > 0) {
 				baos.write(mis.read());

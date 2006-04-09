@@ -1,5 +1,5 @@
 /*
- * $Id: StudentAdministrator.java,v 1.10 2005/07/05 15:33:09 laddi Exp $
+ * $Id: StudentAdministrator.java,v 1.11 2006/04/09 11:41:06 laddi Exp $
  * Created on Jun 16, 2005
  *
  * Copyright (C) 2005 Idega Software hf. All Rights Reserved.
@@ -42,10 +42,10 @@ import com.idega.util.text.Name;
 
 
 /**
- * Last modified: $Date: 2005/07/05 15:33:09 $ by $Author: laddi $
+ * Last modified: $Date: 2006/04/09 11:41:06 $ by $Author: laddi $
  * 
  * @author <a href="mailto:laddi@idega.com">laddi</a>
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 public class StudentAdministrator extends AdultEducationBlock implements IWPageEventListener {
 
@@ -123,11 +123,11 @@ public class StudentAdministrator extends AdultEducationBlock implements IWPageE
 		createCatalog.setValueOnClick(PARAMETER_ACTION, String.valueOf(ACTION_CREATE_CATALOG));
 		
 		form.add(new Break(2));
-		if (iShowGradeSetter) {
+		if (this.iShowGradeSetter) {
 			form.add(setGrades);
 		}
 		form.add(Text.getNonBrakingSpace());
-		if (iShowCatalogCreator) {
+		if (this.iShowCatalogCreator) {
 			form.add(createCatalog);
 		}
 		
@@ -470,10 +470,10 @@ public class StudentAdministrator extends AdultEducationBlock implements IWPageE
 	}
 
 	public void setShowCatalogCreator(boolean showCatalogCreator) {
-		iShowCatalogCreator = showCatalogCreator;
+		this.iShowCatalogCreator = showCatalogCreator;
 	}
 
 	public void setShowGradeSetter(boolean showGradeSetter) {
-		iShowGradeSetter = showGradeSetter;
+		this.iShowGradeSetter = showGradeSetter;
 	}
 }

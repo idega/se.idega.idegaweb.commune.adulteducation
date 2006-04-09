@@ -1,5 +1,5 @@
 /*
- * $Id: AdultEducationStudentPlacings.java,v 1.4 2005/10/27 22:34:16 palli Exp $
+ * $Id: AdultEducationStudentPlacings.java,v 1.5 2006/04/09 11:41:06 laddi Exp $
  * Created on Oct 19, 2005
  * 
  * Copyright (C) 2005 Idega Software hf. All Rights Reserved.
@@ -51,8 +51,9 @@ public class AdultEducationStudentPlacings extends AdultEducationBlock {
 
 		int row = 1;
 		GenericButton back = (GenericButton) getStyledInterface(new GenericButton("back", localize("adult_education_student_placing_back", "Back")));
-		if (getResponsePage() != null)
+		if (getResponsePage() != null) {
 			back.setPageToOpen(getResponsePage());
+		}
 
 		int studentId = -1;
 		try {
@@ -163,10 +164,12 @@ public class AdultEducationStudentPlacings extends AdultEducationBlock {
 				table.setCellpaddingRight(table.getColumns(), row, 12);
 			}
 			else {
-				if (row % 2 == 0)
+				if (row % 2 == 0) {
 					table.setRowColor(row, getZebraColor1());
-				else
+				}
+				else {
 					table.setRowColor(row, getZebraColor2());
+				}
 			}
 
 			//Period
@@ -242,8 +245,9 @@ public class AdultEducationStudentPlacings extends AdultEducationBlock {
 			if (address != null) {
 				table.add(getLocalizedSmallHeader("school.address", "Address"), 1, row);
 				table.add(getSmallText(address.getStreetAddress()), 3, row);
-				if (address.getPostalAddress() != null)
+				if (address.getPostalAddress() != null) {
 					table.add(getSmallText(", " + address.getPostalAddress()), 3, row);
+				}
 				row++;
 			}
 

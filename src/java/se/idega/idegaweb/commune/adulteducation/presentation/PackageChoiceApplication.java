@@ -1,5 +1,5 @@
 /*
- * $Id: PackageChoiceApplication.java,v 1.4 2005/10/31 17:21:22 palli Exp $
+ * $Id: PackageChoiceApplication.java,v 1.5 2006/04/09 11:41:06 laddi Exp $
  * Created on May 10, 2005
  *
  * Copyright (C) 2005 Idega Software hf. All Rights Reserved.
@@ -32,10 +32,10 @@ import com.idega.presentation.ui.util.SelectorUtility;
 
 
 /**
- * Last modified: $Date: 2005/10/31 17:21:22 $ by $Author: palli $
+ * Last modified: $Date: 2006/04/09 11:41:06 $ by $Author: laddi $
  * 
  * @author <a href="mailto:laddi@idega.com">laddi</a>
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class PackageChoiceApplication extends AdultEducationBlock {
 
@@ -87,8 +87,8 @@ public class PackageChoiceApplication extends AdultEducationBlock {
 		
 		DropdownMenu seasons = (DropdownMenu) getStyledInterface(util.getSelectorFromIDOEntities(new DropdownMenu(PARAMETER_SCHOOL_SEASON), getBusiness().getCurrentSeasons(), "getSeasonName"));
 		seasons.addMenuElementFirst("", localize("select_season", "Select season"));
-		if (iSchoolSeasonPK != null) {
-			seasons.setSelectedElement(iSchoolSeasonPK.toString());
+		if (this.iSchoolSeasonPK != null) {
+			seasons.setSelectedElement(this.iSchoolSeasonPK.toString());
 		}
 		seasons.setToSubmit();
 
@@ -248,11 +248,11 @@ public class PackageChoiceApplication extends AdultEducationBlock {
 	private int parseAction(IWContext iwc) {
 		try {
 			if (iwc.isParameterSet(PARAMETER_SCHOOL_SEASON)) {
-				iSchoolSeasonPK = iwc.getParameter(PARAMETER_SCHOOL_SEASON);
+				this.iSchoolSeasonPK = iwc.getParameter(PARAMETER_SCHOOL_SEASON);
 			}
 
-			if (iSchoolSeasonPK != null) {
-				iSchoolSeason = getBusiness().getSchoolBusiness().getSchoolSeason(iSchoolSeasonPK);
+			if (this.iSchoolSeasonPK != null) {
+				this.iSchoolSeason = getBusiness().getSchoolBusiness().getSchoolSeason(this.iSchoolSeasonPK);
 			}
 		}
 		catch (RemoteException re) {

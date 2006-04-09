@@ -1,5 +1,5 @@
 /*
- * $Id: GroupEditor.java,v 1.10 2005/06/12 13:46:45 laddi Exp $
+ * $Id: GroupEditor.java,v 1.11 2006/04/09 11:41:06 laddi Exp $
  * Created on Jun 2, 2005
  *
  * Copyright (C) 2005 Idega Software hf. All Rights Reserved.
@@ -40,10 +40,10 @@ import com.idega.user.data.User;
 
 
 /**
- * Last modified: $Date: 2005/06/12 13:46:45 $ by $Author: laddi $
+ * Last modified: $Date: 2006/04/09 11:41:06 $ by $Author: laddi $
  * 
  * @author <a href="mailto:laddi@idega.com">laddi</a>
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 public class GroupEditor extends AdultEducationBlock implements IWPageEventListener {
 
@@ -119,7 +119,7 @@ public class GroupEditor extends AdultEducationBlock implements IWPageEventListe
 	private void showEditor() throws RemoteException {
 		Form form = new Form();
 		form.setEventListener(GroupEditor.class);
-		boolean update = (action == ACTION_EDIT);
+		boolean update = (this.action == ACTION_EDIT);
 		
 		SchoolSeason season = null;
 		SchoolStudyPathGroup group = null;
@@ -388,12 +388,12 @@ public class GroupEditor extends AdultEducationBlock implements IWPageEventListe
 	}
 	
 	private int parseAction(IWContext iwc) {
-		action = ACTION_VIEW;
+		this.action = ACTION_VIEW;
 		if (iwc.isParameterSet(PARAMETER_ACTION)) {
-			action = Integer.parseInt(iwc.getParameter(PARAMETER_ACTION));
+			this.action = Integer.parseInt(iwc.getParameter(PARAMETER_ACTION));
 		}
 		
-		return action;
+		return this.action;
 	}
 	
 	public boolean actionPerformed(IWContext iwc) throws IWException {

@@ -71,17 +71,17 @@ public class GroupFileWriter implements MediaWritable {
 	
 	public void init(HttpServletRequest req, IWContext iwc) {
 		try {
-			locale = iwc.getApplicationSettings().getApplicationLocale();
-			iwrb = iwc.getIWMainApplication().getBundle(CommuneBlock.IW_BUNDLE_IDENTIFIER).getResourceBundle(locale);
-			schoolClass = getSession(iwc).getSchoolClass();
-			userBusiness = getUserBusiness(iwc);
+			this.locale = iwc.getApplicationSettings().getApplicationLocale();
+			this.iwrb = iwc.getIWMainApplication().getBundle(CommuneBlock.IW_BUNDLE_IDENTIFIER).getResourceBundle(this.locale);
+			this.schoolClass = getSession(iwc).getSchoolClass();
+			this.userBusiness = getUserBusiness(iwc);
 			
 			String type = req.getParameter(prmPrintType);
 			if (type.equals(PDF)) {
-				buffer = writePDF(iwc, schoolClass);
+				this.buffer = writePDF(iwc, this.schoolClass);
 			}
 			else if (type.equals(XLS)) {
-				buffer = writeXLS(iwc, schoolClass);
+				this.buffer = writeXLS(iwc, this.schoolClass);
 			}
 		}
 		catch (Exception e) {
@@ -90,22 +90,24 @@ public class GroupFileWriter implements MediaWritable {
 	}
 	
 	public String getMimeType() {
-		if (buffer != null)
-			return buffer.getMimeType();
+		if (this.buffer != null) {
+			return this.buffer.getMimeType();
+		}
 		return "application/pdf";
 	}
 	
 	public void writeTo(OutputStream out) throws IOException {
-		if (buffer != null) {
-			MemoryInputStream mis = new MemoryInputStream(buffer);
+		if (this.buffer != null) {
+			MemoryInputStream mis = new MemoryInputStream(this.buffer);
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			while (mis.available() > 0) {
 				baos.write(mis.read());
 			}
 			baos.writeTo(out);
 		}
-		else
+		else {
 			System.err.println("buffer is null");
+		}
 	}
 	
 	public MemoryFileBuffer writeXLS(IWContext iwc, SchoolClass schoolClass) throws Exception {
@@ -132,25 +134,25 @@ public class GroupFileWriter implements MediaWritable {
 			int cellRow = 0;
 			HSSFRow row = sheet.createRow(cellRow++);
 			HSSFCell cell = row.createCell((short)0);
-	    cell.setCellValue(iwrb.getLocalizedString("name","Name"));
+	    cell.setCellValue(this.iwrb.getLocalizedString("name","Name"));
 	    cell.setCellStyle(style);
 	    cell = row.createCell((short)1);
-	    cell.setCellValue(iwrb.getLocalizedString("personal_id","Personal ID"));
+	    cell.setCellValue(this.iwrb.getLocalizedString("personal_id","Personal ID"));
 	    cell.setCellStyle(style);
 	    cell = row.createCell((short)2);
-	    cell.setCellValue(iwrb.getLocalizedString("address","Address"));
+	    cell.setCellValue(this.iwrb.getLocalizedString("address","Address"));
 	    cell.setCellStyle(style);
 			cell = row.createCell((short)3);
-			cell.setCellValue(iwrb.getLocalizedString("postal_code","Postal code"));
+			cell.setCellValue(this.iwrb.getLocalizedString("postal_code","Postal code"));
 			cell.setCellStyle(style);
 	    cell = row.createCell((short)4);
-	    cell.setCellValue(iwrb.getLocalizedString("phone","Phone"));
+	    cell.setCellValue(this.iwrb.getLocalizedString("phone","Phone"));
 	    cell.setCellStyle(style);
 			cell = row.createCell((short)5);
-			cell.setCellValue(iwrb.getLocalizedString("start_date","Start date"));
+			cell.setCellValue(this.iwrb.getLocalizedString("start_date","Start date"));
 			cell.setCellStyle(style);
 	    cell = row.createCell((short)6);
-	    cell.setCellValue(iwrb.getLocalizedString("end_date","End date"));
+	    cell.setCellValue(this.iwrb.getLocalizedString("end_date","End date"));
 	    cell.setCellStyle(style);
 
 			User student;
@@ -164,26 +166,30 @@ public class GroupFileWriter implements MediaWritable {
 				row = sheet.createRow(cellRow++);
 				studentMember = (SchoolClassMember) iter.next();
 				student = studentMember.getStudent();
-				address = userBusiness.getUsersMainAddress(student);
-				if (address != null)
+				address = this.userBusiness.getUsersMainAddress(student);
+				if (address != null) {
 					postalCode = address.getPostalCode();
-				phone = userBusiness.getChildHomePhone(student);
+				}
+				phone = this.userBusiness.getChildHomePhone(student);
 				IWTimestamp start = new IWTimestamp(studentMember.getRegisterDate());
 				IWTimestamp end = studentMember.getRemovedDate() != null ? new IWTimestamp(studentMember.getRemovedDate()) : null;
 
 				Name name = new Name(student.getFirstName(), student.getMiddleName(), student.getLastName());
-		    row.createCell((short)0).setCellValue(name.getName(locale, true));
-		    row.createCell((short)1).setCellValue(PersonalIDFormatter.format(student.getPersonalID(), locale));
+		    row.createCell((short)0).setCellValue(name.getName(this.locale, true));
+		    row.createCell((short)1).setCellValue(PersonalIDFormatter.format(student.getPersonalID(), this.locale));
 		    if (address != null) {
 			    row.createCell((short)2).setCellValue(address.getStreetAddress());
-			    if (postalCode != null)
+			    if (postalCode != null) {
 						row.createCell((short)3).setCellValue(postalCode.getPostalAddress());
+					}
 		    }
-			  if (phone != null)
-			    row.createCell((short)4).setCellValue(phone.getNumber());
-			  row.createCell((short)5).setCellValue(start.getLocaleDate(locale, IWTimestamp.SHORT));
-			  if (end != null)
-				  row.createCell((short)6).setCellValue(end.getLocaleDate(locale, IWTimestamp.SHORT));
+			  if (phone != null) {
+					row.createCell((short)4).setCellValue(phone.getNumber());
+				}
+			  row.createCell((short)5).setCellValue(start.getLocaleDate(this.locale, IWTimestamp.SHORT));
+			  if (end != null) {
+					row.createCell((short)6).setCellValue(end.getLocaleDate(this.locale, IWTimestamp.SHORT));
+				}
 			}
 			wb.write(mos);
 		}
@@ -211,7 +217,7 @@ public class GroupFileWriter implements MediaWritable {
 			SchoolClassMember studentMember;
 			Cell cell;
 			
-			String[] headers = {iwrb.getLocalizedString("name","Name"), iwrb.getLocalizedString("personal_id","Personal ID"), iwrb.getLocalizedString("address","Address"), iwrb.getLocalizedString("postal_code","Postal code"), iwrb.getLocalizedString("phone","Phone")};
+			String[] headers = {this.iwrb.getLocalizedString("name","Name"), this.iwrb.getLocalizedString("personal_id","Personal ID"), this.iwrb.getLocalizedString("address","Address"), this.iwrb.getLocalizedString("postal_code","Postal code"), this.iwrb.getLocalizedString("phone","Phone")};
 			int[] sizes = { 30, 14, 24, 20, 12 };
 
 			Table datatable = getTable(headers, sizes);
@@ -219,37 +225,41 @@ public class GroupFileWriter implements MediaWritable {
 			while (iter.hasNext()) {
 				studentMember = (SchoolClassMember) iter.next();
 				student = studentMember.getStudent();
-				address = userBusiness.getUsersMainAddress(student);
-				if (address != null)
+				address = this.userBusiness.getUsersMainAddress(student);
+				if (address != null) {
 					postalCode = address.getPostalCode();
-				phone = userBusiness.getChildHomePhone(student);
+				}
+				phone = this.userBusiness.getChildHomePhone(student);
 
 				Name name = new Name(student.getFirstName(), student.getMiddleName(), student.getLastName());
-				cell = new Cell(new Phrase(name.getName(locale, true), new Font(Font.HELVETICA, 9, Font.NORMAL)));
+				cell = new Cell(new Phrase(name.getName(this.locale, true), new Font(Font.HELVETICA, 9, Font.NORMAL)));
 				cell.setBorder(Rectangle.NO_BORDER);
 				datatable.addCell(cell);
 
-				cell = new Cell(new Phrase(PersonalIDFormatter.format(student.getPersonalID(), locale), new Font(Font.HELVETICA, 9, Font.NORMAL)));
+				cell = new Cell(new Phrase(PersonalIDFormatter.format(student.getPersonalID(), this.locale), new Font(Font.HELVETICA, 9, Font.NORMAL)));
 				cell.setBorder(Rectangle.NO_BORDER);
 				datatable.addCell(cell);
 
 				String streetAddress = "";
-				if (address != null)
+				if (address != null) {
 					streetAddress = address.getStreetAddress();
+				}
 				cell = new Cell(new Phrase(streetAddress, new Font(Font.HELVETICA, 9, Font.NORMAL)));
 				cell.setBorder(Rectangle.NO_BORDER);
 				datatable.addCell(cell);
 
 				String postalAddress = "";
-				if (address != null && postalCode != null)
-				postalAddress = postalCode.getPostalAddress();
+				if (address != null && postalCode != null) {
+					postalAddress = postalCode.getPostalAddress();
+				}
 				cell = new Cell(new Phrase(postalAddress, new Font(Font.HELVETICA, 9, Font.NORMAL)));
 				cell.setBorder(Rectangle.NO_BORDER);
 				datatable.addCell(cell);
 
 				String phoneNumber = "";
-				if (phone != null)
+				if (phone != null) {
 					phoneNumber = phone.getNumber();
+				}
 				cell = new Cell(new Phrase(phoneNumber, new Font(Font.HELVETICA, 9, Font.NORMAL)));
 				cell.setBorder(Rectangle.NO_BORDER);
 				datatable.addCell(cell);
@@ -276,8 +286,9 @@ public class GroupFileWriter implements MediaWritable {
 		datatable.setSpacing(0.0f);
 		datatable.setBorder(Rectangle.NO_BORDER);
 		datatable.setWidth(100);
-		if (sizes != null)
+		if (sizes != null) {
 			datatable.setWidths(sizes);
+		}
 		for (int i = 0; i < headers.length; i++) {
 			Cell cell = new Cell(new Phrase(headers[i], new Font(Font.HELVETICA, 12, Font.BOLD)));
 			cell.setBorder(Rectangle.BOTTOM);

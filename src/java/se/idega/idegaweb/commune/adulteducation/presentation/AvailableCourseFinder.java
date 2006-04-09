@@ -44,8 +44,8 @@ public class AvailableCourseFinder extends AdultEducationBlock {
 	private Object iSchoolPK;
 	private School iSchool;
 	
-	private final int ACTION_DEFAULT = 1;
-	private final int ACTION_SEARCH = 2;
+	private static final int ACTION_DEFAULT = 1;
+	private static final int ACTION_SEARCH = 2;
 	
 	public static String NULL_COMMENT = "-";
 		
@@ -75,8 +75,8 @@ public class AvailableCourseFinder extends AdultEducationBlock {
 			DropdownMenu types = (DropdownMenu) getStyledInterface(util.getSelectorFromIDOEntities(new DropdownMenu(
 					PARAMETER_SCHOOL_TYPE), getBusiness().getSchoolTypes(), "getLocalizationKey", getResourceBundle()));
 			types.addMenuElementFirst("", localize("select_type", "Select type"));
-			if (iSchoolTypePK != null) {
-				types.setSelectedElement(iSchoolTypePK.toString());
+			if (this.iSchoolTypePK != null) {
+				types.setSelectedElement(this.iSchoolTypePK.toString());
 			}
 			types.setToSubmit();
 			table.add(types, 1, 1);
@@ -87,8 +87,8 @@ public class AvailableCourseFinder extends AdultEducationBlock {
 			DropdownMenu seasons = (DropdownMenu) getStyledInterface(util.getSelectorFromIDOEntities(new DropdownMenu(
 					PARAMETER_SCHOOL_SEASON), getBusiness().getCurrentSeasons(), "getSeasonName"));
 			seasons.addMenuElementFirst("", localize("select_season", "Select season"));
-			if (iSchoolSeasonPK != null) {
-				seasons.setSelectedElement(iSchoolSeasonPK.toString());
+			if (this.iSchoolSeasonPK != null) {
+				seasons.setSelectedElement(this.iSchoolSeasonPK.toString());
 			}
 			seasons.setToSubmit();
 			table.add(seasons, 2, 1);
@@ -100,8 +100,8 @@ public class AvailableCourseFinder extends AdultEducationBlock {
 					PARAMETER_STUDY_PATH_GROUP), getBusiness().getStudyPathsGroups(), "getLocalizationKey",
 					getResourceBundle()));
 			groups.addMenuElementFirst("", localize("select_study_path_group", "Select group"));
-			if (iStudyPathGroupPK != null) {
-				groups.setSelectedElement(iStudyPathGroupPK.toString());
+			if (this.iStudyPathGroupPK != null) {
+				groups.setSelectedElement(this.iStudyPathGroupPK.toString());
 			}
 			groups.setToSubmit();
 			table.add(groups, 3, 1);
@@ -111,12 +111,12 @@ public class AvailableCourseFinder extends AdultEducationBlock {
 			table.add(new Break(), 1, 2);
 			DropdownMenu studyPaths = (DropdownMenu) getStyledInterface(util.getSelectorFromIDOEntities(
 					new DropdownMenu(PARAMETER_STUDY_PATH),
-					getBusiness().getStydyPathsBySchoolTypeAndSchoolStudyPathGroup(iSchoolType, iStudyPathGroup),
+					getBusiness().getStydyPathsBySchoolTypeAndSchoolStudyPathGroup(this.iSchoolType, this.iStudyPathGroup),
 					"getDescription"));
 			studyPaths.addMenuElementFirst("", localize("select_study_path", "Select study path"));
 			studyPaths.setToSubmit();
-			if (iStudyPathPK != null) {
-				studyPaths.setSelectedElement(iStudyPathPK.toString());
+			if (this.iStudyPathPK != null) {
+				studyPaths.setSelectedElement(this.iStudyPathPK.toString());
 			}
 			table.add(studyPaths, 1, 2);
 			
@@ -124,8 +124,8 @@ public class AvailableCourseFinder extends AdultEducationBlock {
 			table.add(getSmallHeader(localize("school", "School") + ":"), 2, 2); // aka Anordnare
 			table.add(new Break(), 2, 2);
 			Collection schools = null;
-			if (iSchoolSeasonPK != null && iStudyPathGroupPK != null && iSchoolTypePK != null) {
-				schools = getBusiness().getAvailableSchools(iStudyPathPK, iSchoolSeasonPK, iStudyPathGroupPK, iSchoolTypePK);
+			if (this.iSchoolSeasonPK != null && this.iStudyPathGroupPK != null && this.iSchoolTypePK != null) {
+				schools = getBusiness().getAvailableSchools(this.iStudyPathPK, this.iSchoolSeasonPK, this.iStudyPathGroupPK, this.iSchoolTypePK);
 			}
 			DropdownMenu school = (DropdownMenu) getStyledInterface(new DropdownMenu(PARAMETER_SCHOOL));
 			school.addMenuElementFirst("", localize("select_school", "Select school"));
@@ -136,8 +136,8 @@ public class AvailableCourseFinder extends AdultEducationBlock {
 					school.addMenuElement(element.getPrimaryKey().toString(), element.getSchoolName());
 				}
 			}
-			if (iSchoolPK != null) {
-				school.setSelectedElement(iSchoolPK.toString());
+			if (this.iSchoolPK != null) {
+				school.setSelectedElement(this.iSchoolPK.toString());
 			}
 			table.add(school, 2, 2);
 			table.mergeCells(2, 2, 3, 2);			
@@ -194,40 +194,40 @@ public class AvailableCourseFinder extends AdultEducationBlock {
 	private int parseAction(IWContext iwc) {
 					
 		if (iwc.isParameterSet(PARAMETER_SCHOOL_TYPE)) {
-			iSchoolTypePK = iwc.getParameter(PARAMETER_SCHOOL_TYPE);
+			this.iSchoolTypePK = iwc.getParameter(PARAMETER_SCHOOL_TYPE);
 		}	
 		
 		if (iwc.isParameterSet(PARAMETER_SCHOOL_SEASON)) {
-			iSchoolSeasonPK = iwc.getParameter(PARAMETER_SCHOOL_SEASON);
+			this.iSchoolSeasonPK = iwc.getParameter(PARAMETER_SCHOOL_SEASON);
 		}		
 		
 		if (iwc.isParameterSet(PARAMETER_STUDY_PATH_GROUP)) {
-			iStudyPathGroupPK = iwc.getParameter(PARAMETER_STUDY_PATH_GROUP);
+			this.iStudyPathGroupPK = iwc.getParameter(PARAMETER_STUDY_PATH_GROUP);
 		}
 		
 		if (iwc.isParameterSet(PARAMETER_STUDY_PATH)) {
-			iStudyPathPK = iwc.getParameter(PARAMETER_STUDY_PATH);
+			this.iStudyPathPK = iwc.getParameter(PARAMETER_STUDY_PATH);
 		}	
 		
 		if (iwc.isParameterSet(PARAMETER_SCHOOL)) {
-			iSchoolPK = iwc.getParameter(PARAMETER_SCHOOL);
+			this.iSchoolPK = iwc.getParameter(PARAMETER_SCHOOL);
 		}			
 		
 		try {
-			if (iSchoolTypePK != null) {
-				iSchoolType = getBusiness().getSchoolBusiness().getSchoolType(iSchoolTypePK);
+			if (this.iSchoolTypePK != null) {
+				this.iSchoolType = getBusiness().getSchoolBusiness().getSchoolType(this.iSchoolTypePK);
 			}
-			if (iSchoolSeasonPK != null) {
-				iSchoolSeason = getBusiness().getSchoolBusiness().getSchoolSeason(iSchoolSeasonPK);
+			if (this.iSchoolSeasonPK != null) {
+				this.iSchoolSeason = getBusiness().getSchoolBusiness().getSchoolSeason(this.iSchoolSeasonPK);
 			}
-			if (iStudyPathGroupPK != null) {
-				iStudyPathGroup = getBusiness().getStudyPathBusiness().findStudyPathGroup(iStudyPathGroupPK);
+			if (this.iStudyPathGroupPK != null) {
+				this.iStudyPathGroup = getBusiness().getStudyPathBusiness().findStudyPathGroup(this.iStudyPathGroupPK);
 			}
-			if (iStudyPathPK != null ) {
-				iStudyPath = getBusiness().getStudyPathBusiness().findStudyPath(iStudyPathPK);
+			if (this.iStudyPathPK != null ) {
+				this.iStudyPath = getBusiness().getStudyPathBusiness().findStudyPath(this.iStudyPathPK);
 			}
-			if (iSchoolPK != null) {
-				iSchool = getBusiness().getSchoolBusiness().getSchool(iSchoolPK);
+			if (this.iSchoolPK != null) {
+				this.iSchool = getBusiness().getSchoolBusiness().getSchool(this.iSchoolPK);
 			}
 		}
 		catch (RemoteException e) {
@@ -259,16 +259,16 @@ public class AvailableCourseFinder extends AdultEducationBlock {
 		table.add(getLocalizedSmallHeader("length", "Length"), column++, row++);
 		
 		//chek if parameters are supplied
-		if (iSchoolType == null || iSchoolSeason == null || iStudyPathGroup == null) {
+		if (this.iSchoolType == null || this.iSchoolSeason == null || this.iStudyPathGroup == null) {
 			return null;
 		}
-		if (iStudyPathGroup == null && iSchool == null) {
+		if (this.iStudyPathGroup == null && this.iSchool == null) {
 			return null;
 		}		
 		
 		try {
-			Collection courses = getBusiness().findAvailableCourses(iSchoolType, iSchoolSeason, 
-					iStudyPathGroup, iStudyPath, iSchool);
+			Collection courses = getBusiness().findAvailableCourses(this.iSchoolType, this.iSchoolSeason, 
+					this.iStudyPathGroup, this.iStudyPath, this.iSchool);
 			
 			Iterator iter = courses.iterator();
 			while (iter.hasNext()) {

@@ -1,5 +1,5 @@
 /*
- * $Id: AdultEducationBlock.java,v 1.8 2005/07/07 08:41:42 laddi Exp $
+ * $Id: AdultEducationBlock.java,v 1.9 2006/04/09 11:41:06 laddi Exp $
  * Created on 27.4.2005
  *
  * Copyright (C) 2005 Idega Software hf. All Rights Reserved.
@@ -27,10 +27,10 @@ import com.idega.presentation.text.Link;
 import com.idega.presentation.ui.Window;
 
 /**
- * Last modified: $Date: 2005/07/07 08:41:42 $ by $Author: laddi $
+ * Last modified: $Date: 2006/04/09 11:41:06 $ by $Author: laddi $
  * 
  * @author <a href="mailto:laddi@idega.com">laddi</a>
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public abstract class AdultEducationBlock extends CommuneBlock {
 
@@ -50,8 +50,8 @@ public abstract class AdultEducationBlock extends CommuneBlock {
 	public void main(IWContext iwc) throws Exception {
 		setBundle(getBundle(iwc));
 		setResourceBundle(getResourceBundle(iwc));
-		business = getBusiness(iwc);
-		session = getSession(iwc);
+		this.business = getBusiness(iwc);
+		this.session = getSession(iwc);
 		
 		RED_COLOR = getBundle(iwc).getProperty(PROPERTY_RED_COLOR, "#FFE0E0");
 		
@@ -75,7 +75,7 @@ public abstract class AdultEducationBlock extends CommuneBlock {
 	}
 
 	protected AdultEducationBusiness getBusiness() {
-		return business;
+		return this.business;
 	}
 	
 	private AdultEducationBusiness getBusiness(IWApplicationContext iwac) {
@@ -88,7 +88,7 @@ public abstract class AdultEducationBlock extends CommuneBlock {
 	}
 
 	protected AdultEducationSession getSession() {
-		return session;
+		return this.session;
 	}
 	
 	protected AdultEducationSession getSession(IWUserContext iwuc) {

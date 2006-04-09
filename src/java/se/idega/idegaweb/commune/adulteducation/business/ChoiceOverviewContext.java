@@ -1,5 +1,5 @@
 /*
- * $Id: ChoiceOverviewContext.java,v 1.7 2005/06/01 08:52:26 laddi Exp $ Created
+ * $Id: ChoiceOverviewContext.java,v 1.8 2006/04/09 11:41:06 laddi Exp $ Created
  * on 15.10.2004
  * 
  * Copyright (C) 2004 Idega Software hf. All Rights Reserved.
@@ -51,10 +51,10 @@ import com.idega.xml.XMLElement;
 import com.idega.xml.XMLOutput;
 
 /**
- * Last modified: $Date: 2005/06/01 08:52:26 $ by $Author: laddi $
+ * Last modified: $Date: 2006/04/09 11:41:06 $ by $Author: laddi $
  * 
  * @author <a href="mailto:aron@idega.com">aron </a>
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class ChoiceOverviewContext extends PrintingContextImpl {
 
@@ -340,15 +340,17 @@ public class ChoiceOverviewContext extends PrintingContextImpl {
 	}
 
 	protected IWBundle getBundle(IWApplicationContext iwac) {
-		if (iwb == null)
-			iwb = iwac.getIWMainApplication().getBundle(getBundleIdentifier());
-		return iwb;
+		if (this.iwb == null) {
+			this.iwb = iwac.getIWMainApplication().getBundle(getBundleIdentifier());
+		}
+		return this.iwb;
 	}
 
 	protected IWResourceBundle getResourceBundle(IWApplicationContext iwac, Locale locale) {
-		if (iwrb == null)
-			iwrb = getBundle(iwac).getResourceBundle(locale);
-		return iwrb;
+		if (this.iwrb == null) {
+			this.iwrb = getBundle(iwac).getResourceBundle(locale);
+		}
+		return this.iwrb;
 	}
 
 	protected String getTemplateUrl(IWBundle iwb, Locale locale, String name) {
@@ -360,16 +362,19 @@ public class ChoiceOverviewContext extends PrintingContextImpl {
 	}
 
 	private String getResourcRealPath(IWBundle iwb, Locale locale) {
-		if (locale != null)
+		if (locale != null) {
 			return iwb.getResourcesRealPath(locale) + "/print/";
-		else
+		}
+		else {
 			return iwb.getResourcesRealPath() + "/print/";
+		}
 	}
 
 	protected FileInputStream getTemplateUrlAsStream(IWBundle iwb, Locale locale, String name, boolean createIfNotExists) throws IOException {
 		File template = new File(getTemplateUrl(iwb, locale, name));
-		if (!template.exists() && createIfNotExists)
+		if (!template.exists() && createIfNotExists) {
 			createTemplateFile(template);
+		}
 		return new FileInputStream(template);
 	}
 

@@ -1,5 +1,5 @@
 /*
- * $Id: StudentEditor.java,v 1.11 2006/03/20 02:11:29 sigtryggur Exp $
+ * $Id: StudentEditor.java,v 1.12 2006/04/09 11:41:06 laddi Exp $
  * Created on Jun 2, 2005
  *
  * Copyright (C) 2005 Idega Software hf. All Rights Reserved.
@@ -51,10 +51,10 @@ import com.idega.util.text.TextSoap;
 
 
 /**
- * Last modified: $Date: 2006/03/20 02:11:29 $ by $Author: sigtryggur $
+ * Last modified: $Date: 2006/04/09 11:41:06 $ by $Author: laddi $
  * 
  * @author <a href="mailto:laddi@idega.com">laddi</a>
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 public class StudentEditor extends AdultEducationBlock implements IWPageEventListener {
 	
@@ -530,7 +530,7 @@ public class StudentEditor extends AdultEducationBlock implements IWPageEventLis
 	}
 	
 	private void close(IWContext iwc, int action) {
-		URLUtil URL = new URLUtil(BuilderLogic.getInstance().getIBPageURL(iwc, iPageID));
+		URLUtil URL = new URLUtil(BuilderLogic.getInstance().getIBPageURL(iwc, this.iPageID));
 		URL.addParameter(StudentPlacer.PARAMETER_ACTION, action);
 		getParentPage().setParentToRedirect(URL.toString());
 		getParentPage().close();
@@ -538,7 +538,7 @@ public class StudentEditor extends AdultEducationBlock implements IWPageEventLis
 
 	private int parseAction(IWContext iwc) {
 		if (iwc.isParameterSet(PARAMETER_PAGE)) {
-			iPageID = Integer.parseInt(iwc.getParameter(PARAMETER_PAGE));
+			this.iPageID = Integer.parseInt(iwc.getParameter(PARAMETER_PAGE));
 		}
 		
 		if (iwc.isParameterSet(PARAMETER_ACTION)) {

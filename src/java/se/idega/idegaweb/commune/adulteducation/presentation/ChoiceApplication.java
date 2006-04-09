@@ -1,5 +1,5 @@
 /*
- * $Id: ChoiceApplication.java,v 1.11 2005/10/31 17:21:22 palli Exp $
+ * $Id: ChoiceApplication.java,v 1.12 2006/04/09 11:41:06 laddi Exp $
  * Created on May 10, 2005
  *
  * Copyright (C) 2005 Idega Software hf. All Rights Reserved.
@@ -41,10 +41,10 @@ import com.idega.presentation.ui.util.SelectorUtility;
 
 
 /**
- * Last modified: $Date: 2005/10/31 17:21:22 $ by $Author: palli $
+ * Last modified: $Date: 2006/04/09 11:41:06 $ by $Author: laddi $
  * 
  * @author <a href="mailto:laddi@idega.com">laddi</a>
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 public class ChoiceApplication extends AdultEducationBlock {
 
@@ -107,7 +107,7 @@ public class ChoiceApplication extends AdultEducationBlock {
 		
 		table.add(getNavigationTable(), 1, 1);
 		table.add(getApplicationTable(iwc), 1, 3);
-		if (isUpdate) {
+		if (this.isUpdate) {
 			form.maintainParameter(PARAMETER_CHOICE);
 		}
 		
@@ -128,35 +128,35 @@ public class ChoiceApplication extends AdultEducationBlock {
 		
 		DropdownMenu types = (DropdownMenu) getStyledInterface(util.getSelectorFromIDOEntities(new DropdownMenu(PARAMETER_SCHOOL_TYPE), getBusiness().getSchoolTypes(), "getLocalizationKey", getResourceBundle()));
 		types.addMenuElementFirst("", localize("select_type", "Select type"));
-		if (iSchoolTypePK != null) {
-			types.setSelectedElement(iSchoolTypePK.toString());
+		if (this.iSchoolTypePK != null) {
+			types.setSelectedElement(this.iSchoolTypePK.toString());
 		}
 		types.setToSubmit();
-		if (isUpdate) {
+		if (this.isUpdate) {
 			types.setDisabled(true);
-			table.add(new HiddenInput(PARAMETER_SCHOOL_TYPE, iSchoolTypePK.toString()));
+			table.add(new HiddenInput(PARAMETER_SCHOOL_TYPE, this.iSchoolTypePK.toString()));
 		}
 		
 		DropdownMenu groups = (DropdownMenu) getStyledInterface(util.getSelectorFromIDOEntities(new DropdownMenu(PARAMETER_STUDY_PATH_GROUP), getBusiness().getStudyPathsGroups(), "getLocalizationKey", getResourceBundle()));
 		groups.addMenuElementFirst("", localize("select_study_path_group", "Select group"));
-		if (iStudyPathGroupPK != null) {
-			groups.setSelectedElement(iStudyPathGroupPK.toString());
+		if (this.iStudyPathGroupPK != null) {
+			groups.setSelectedElement(this.iStudyPathGroupPK.toString());
 		}
 		groups.setToSubmit();
-		if (isUpdate) {
+		if (this.isUpdate) {
 			groups.setDisabled(true);
-			table.add(new HiddenInput(PARAMETER_STUDY_PATH_GROUP, iStudyPathGroupPK.toString()));
+			table.add(new HiddenInput(PARAMETER_STUDY_PATH_GROUP, this.iStudyPathGroupPK.toString()));
 		}
 		
 		DropdownMenu seasons = (DropdownMenu) getStyledInterface(util.getSelectorFromIDOEntities(new DropdownMenu(PARAMETER_SCHOOL_SEASON), getBusiness().getCurrentSeasons(), "getSeasonName"));
 		seasons.addMenuElementFirst("", localize("select_season", "Select season"));
-		if (iSchoolSeasonPK != null) {
-			seasons.setSelectedElement(iSchoolSeasonPK.toString());
+		if (this.iSchoolSeasonPK != null) {
+			seasons.setSelectedElement(this.iSchoolSeasonPK.toString());
 		}
 		seasons.setToSubmit();
-		if (isUpdate) {
+		if (this.isUpdate) {
 			seasons.setDisabled(true);
-			table.add(new HiddenInput(PARAMETER_SCHOOL_SEASON, iSchoolSeasonPK.toString()));
+			table.add(new HiddenInput(PARAMETER_SCHOOL_SEASON, this.iSchoolSeasonPK.toString()));
 		}
 		
 		table.add(getSmallHeader(localize("type", "Type")), 1, 1);
@@ -181,9 +181,9 @@ public class ChoiceApplication extends AdultEducationBlock {
 		table.mergeCells(1, 5, 4, 5);
 		table.setWidth(2, 12);
 		
-		Collection paths = getBusiness().getStudyPaths(iSchoolType, iStudyPathGroup);
-		if (!isUpdate) {
-			paths.removeAll(getBusiness().getSelectedStudyPaths(iwc.getCurrentUser(), iSchoolSeason));
+		Collection paths = getBusiness().getStudyPaths(this.iSchoolType, this.iStudyPathGroup);
+		if (!this.isUpdate) {
+			paths.removeAll(getBusiness().getSelectedStudyPaths(iwc.getCurrentUser(), this.iSchoolSeason));
 		}
 		
 		DropdownMenu studyPaths = (DropdownMenu) getStyledInterface(new DropdownMenu(PARAMETER_STUDY_PATH));
@@ -194,12 +194,12 @@ public class ChoiceApplication extends AdultEducationBlock {
 			studyPaths.addMenuElement(path.getPrimaryKey().toString(), path.getDescription() + ", " + path.getPoints());
 		}
 		studyPaths.setToSubmit();
-		if (iStudyPathPK != null) {
-			studyPaths.setSelectedElement(iStudyPathPK.toString());
+		if (this.iStudyPathPK != null) {
+			studyPaths.setSelectedElement(this.iStudyPathPK.toString());
 		}
-		if (isUpdate) {
+		if (this.isUpdate) {
 			studyPaths.setDisabled(true);
-			table.add(new HiddenInput(PARAMETER_STUDY_PATH, iStudyPathPK.toString()));
+			table.add(new HiddenInput(PARAMETER_STUDY_PATH, this.iStudyPathPK.toString()));
 		}
 		
 		table.add(getSmallHeader(localize("study_path", "Study path")), 1, 1);
@@ -207,16 +207,16 @@ public class ChoiceApplication extends AdultEducationBlock {
 		table.add(studyPaths, 1, 1);
 		
 		Collection schools = null;
-		if (iStudyPathPK != null && iSchoolSeasonPK != null) {
-			schools = getBusiness().getAvailableSchools(iStudyPathPK, iSchoolSeasonPK);
+		if (this.iStudyPathPK != null && this.iSchoolSeasonPK != null) {
+			schools = getBusiness().getAvailableSchools(this.iStudyPathPK, this.iSchoolSeasonPK);
 		}
 
 		for (int a = 1; a <= 3; a++) {
 			School chosenSchool = null;
 			AdultEducationCourse chosenCourse = null;
-			if (isUpdate) {
+			if (this.isUpdate) {
 				try {
-					AdultEducationChoice choice = getBusiness().getChoice(iwc.getCurrentUser(), iSchoolSeasonPK, iStudyPathPK, a);
+					AdultEducationChoice choice = getBusiness().getChoice(iwc.getCurrentUser(), this.iSchoolSeasonPK, this.iStudyPathPK, a);
 					AdultEducationCourse course = choice.getCourse();
 					
 					chosenSchool = course.getSchool();
@@ -243,11 +243,11 @@ public class ChoiceApplication extends AdultEducationBlock {
 			DropdownMenu course = (DropdownMenu) getStyledInterface(new DropdownMenu(PARAMETER_COURSE + "_" + a));
 			course.addMenuElementFirst("", localize("select_course", "Select course"));
 			if (chosenCourse != null) {
-				Collection courses = getBusiness().getAvailableCourses(iSchoolSeasonPK, chosenSchool.getPrimaryKey(), iStudyPathPK);
+				Collection courses = getBusiness().getAvailableCourses(this.iSchoolSeasonPK, chosenSchool.getPrimaryKey(), this.iStudyPathPK);
 				Iterator iterator = courses.iterator();
 				while (iterator.hasNext()) {
 					AdultEducationCourse element = (AdultEducationCourse) iterator.next();
-					if (!element.isInactive() || (isUpdate && chosenCourse.equals(element))) {
+					if (!element.isInactive() || (this.isUpdate && chosenCourse.equals(element))) {
 						course.addMenuElement(element.getPrimaryKey().toString(), element.getCode());
 					}
 				}
@@ -288,8 +288,8 @@ public class ChoiceApplication extends AdultEducationBlock {
 		TextArea area = (TextArea) getStyledInterface(new TextArea(PARAMETER_COMMENT));
 		area.setWidth(Table.HUNDRED_PERCENT);
 		area.setRows(5);
-		if (isUpdate && iChoice.getComment() != null) {
-			area.setContent(iChoice.getComment());
+		if (this.isUpdate && this.iChoice.getComment() != null) {
+			area.setContent(this.iChoice.getComment());
 		}
 		table.add(new Break(), 1, 4);
 		table.add(getSmallHeader(localize("comment", "Comment") + ":"), 1, 4);
@@ -306,9 +306,9 @@ public class ChoiceApplication extends AdultEducationBlock {
 		
 		Collection reasons = getBusiness().getActiveReasons();
 		Collection selectedReasons = new ArrayList();
-		if (isUpdate) {
+		if (this.isUpdate) {
 			try {
-				selectedReasons = iChoice.getReasons();
+				selectedReasons = this.iChoice.getReasons();
 			}
 			catch (IDORelationshipException ire) {
 				ire.printStackTrace();
@@ -343,8 +343,8 @@ public class ChoiceApplication extends AdultEducationBlock {
 		TextArea otherReason = (TextArea) getStyledInterface(new TextArea(PARAMETER_OTHER_REASON));
 		otherReason.setWidth(Table.HUNDRED_PERCENT);
 		otherReason.setRows(5);
-		if (isUpdate && iChoice.getOtherReason() != null) {
-			otherReason.setContent(iChoice.getOtherReason());
+		if (this.isUpdate && this.iChoice.getOtherReason() != null) {
+			otherReason.setContent(this.iChoice.getOtherReason());
 		}
 		reasonTable.add(getSmallHeader(localize("other_reason", "Other reason") + ":"), 1, row);
 		reasonTable.add(new Break(), 1, row);
@@ -474,43 +474,43 @@ public class ChoiceApplication extends AdultEducationBlock {
 	private int parseAction(IWContext iwc) {
 		try {
 			if (iwc.isParameterSet(PARAMETER_STUDY_PATH)) {
-				iStudyPathPK = iwc.getParameter(PARAMETER_STUDY_PATH);
+				this.iStudyPathPK = iwc.getParameter(PARAMETER_STUDY_PATH);
 			}
 			if (iwc.isParameterSet(PARAMETER_CHOICE)) {
-				isUpdate = true;
+				this.isUpdate = true;
 				
 				try {
-					iChoice = getBusiness().getChoice(iwc.getParameter(PARAMETER_CHOICE));
-					AdultEducationCourse course = iChoice.getCourse();
+					this.iChoice = getBusiness().getChoice(iwc.getParameter(PARAMETER_CHOICE));
+					AdultEducationCourse course = this.iChoice.getCourse();
 					SchoolStudyPath path = course.getStudyPath();
 					
-					iSchoolTypePK = new Integer(path.getSchoolTypeId());
-					iSchoolSeason = course.getSchoolSeason();
-					iSchoolSeasonPK = iSchoolSeason.getPrimaryKey();
-					iStudyPathGroupPK = new Integer(path.getStudyPathGroupID());
+					this.iSchoolTypePK = new Integer(path.getSchoolTypeId());
+					this.iSchoolSeason = course.getSchoolSeason();
+					this.iSchoolSeasonPK = this.iSchoolSeason.getPrimaryKey();
+					this.iStudyPathGroupPK = new Integer(path.getStudyPathGroupID());
 				}
 				catch (FinderException fe) {
 					fe.printStackTrace();
 				}
 			}
 			if (iwc.isParameterSet(PARAMETER_SCHOOL_TYPE)) {
-				iSchoolTypePK = iwc.getParameter(PARAMETER_SCHOOL_TYPE);
+				this.iSchoolTypePK = iwc.getParameter(PARAMETER_SCHOOL_TYPE);
 			}
 			if (iwc.isParameterSet(PARAMETER_SCHOOL_SEASON)) {
-				iSchoolSeasonPK = iwc.getParameter(PARAMETER_SCHOOL_SEASON);
+				this.iSchoolSeasonPK = iwc.getParameter(PARAMETER_SCHOOL_SEASON);
 			}
 			if (iwc.isParameterSet(PARAMETER_STUDY_PATH_GROUP)) {
-				iStudyPathGroupPK = iwc.getParameter(PARAMETER_STUDY_PATH_GROUP);
+				this.iStudyPathGroupPK = iwc.getParameter(PARAMETER_STUDY_PATH_GROUP);
 			}
 			
-			if (iSchoolTypePK != null) {
-				iSchoolType = getBusiness().getSchoolBusiness().getSchoolType(iSchoolTypePK);
+			if (this.iSchoolTypePK != null) {
+				this.iSchoolType = getBusiness().getSchoolBusiness().getSchoolType(this.iSchoolTypePK);
 			}
-			if (iSchoolSeasonPK != null) {
-				iSchoolSeason = getBusiness().getSchoolBusiness().getSchoolSeason(iSchoolSeasonPK);
+			if (this.iSchoolSeasonPK != null) {
+				this.iSchoolSeason = getBusiness().getSchoolBusiness().getSchoolSeason(this.iSchoolSeasonPK);
 			}
-			if (iStudyPathGroupPK != null) {
-				iStudyPathGroup = getBusiness().getStudyPathBusiness().findStudyPathGroup(iStudyPathGroupPK);
+			if (this.iStudyPathGroupPK != null) {
+				this.iStudyPathGroup = getBusiness().getStudyPathBusiness().findStudyPathGroup(this.iStudyPathGroupPK);
 			}
 		}
 		catch (RemoteException re) {
