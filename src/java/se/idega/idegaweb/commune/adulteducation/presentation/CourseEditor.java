@@ -1,5 +1,5 @@
 /*
- * $Id: CourseEditor.java,v 1.11 2006/04/09 11:41:06 laddi Exp $ Created on
+ * $Id: CourseEditor.java,v 1.12 2006/05/08 13:50:51 laddi Exp $ Created on
  * 27.4.2005
  * 
  * Copyright (C) 2005 Idega Software hf. All Rights Reserved.
@@ -44,10 +44,10 @@ import com.idega.user.data.User;
 import com.idega.util.IWTimestamp;
 
 /**
- * Last modified: $Date: 2006/04/09 11:41:06 $ by $Author: laddi $
+ * Last modified: $Date: 2006/05/08 13:50:51 $ by $Author: laddi $
  * 
  * @author <a href="mailto:laddi@idega.com">laddi</a>
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 public class CourseEditor extends AdultEducationBlock {
 
@@ -59,13 +59,13 @@ public class CourseEditor extends AdultEducationBlock {
 
 	private static final String PARAMETER_SCHOOL = "ce_school";
 
-	private static final String PARAMETER_SCHOOL_SEASON = "ce_school_season";
+	private static final String PARAMETER_SCHOOL_SEASON_PK = "ce_school_season";
 
 	private static final String PARAMETER_OLD_SCHOOL_SEASON = "ce_old_school_season";
 
 	private static final String PARAMETER_STUDY_PATH_GROUP = "ce_study_path_group";
 
-	private static final String PARAMETER_STUDY_PATH = "ce_study_path";
+	private static final String PARAMETER_STUDY_PATH_PK = "ce_study_path";
 
 	private static final String PARAMETER_CODE = "ce_code";
 
@@ -196,7 +196,7 @@ public class CourseEditor extends AdultEducationBlock {
 		groups.setToSubmit();
 
 		DropdownMenu seasons = (DropdownMenu) getStyledInterface(util.getSelectorFromIDOEntities(new DropdownMenu(
-				PARAMETER_SCHOOL_SEASON), getBusiness().getSeasons(), "getSeasonName"));
+				PARAMETER_SCHOOL_SEASON_PK), getBusiness().getSeasons(), "getSeasonName"));
 		seasons.addMenuElementFirst("", localize("select_season", "Select season"));
 		if (this.iSchoolSeasonPK != null) {
 			seasons.setSelectedElement(this.iSchoolSeasonPK.toString());
@@ -224,7 +224,7 @@ public class CourseEditor extends AdultEducationBlock {
 		SelectorUtility util = new SelectorUtility();
 
 		DropdownMenu studyPaths = (DropdownMenu) getStyledInterface(util.getSelectorFromIDOEntities(new DropdownMenu(
-				PARAMETER_STUDY_PATH), getBusiness().getStudyPaths(this.iSchoolType, this.iStudyPathGroup), "getDescription"));
+				PARAMETER_STUDY_PATH_PK), getBusiness().getStudyPaths(this.iSchoolType, this.iStudyPathGroup), "getDescription"));
 		studyPaths.addMenuElementFirst("", localize("select_study_path", "Select study path"));
 		if (this.iCourse != null) {
 			studyPaths.setSelectedElement(this.iCourse.getStudyPathPK().toString());
@@ -390,7 +390,7 @@ public class CourseEditor extends AdultEducationBlock {
 					edit.maintainParameter(PARAMETER_SCHOOL_TYPE, iwc);
 					edit.maintainParameter(PARAMETER_STUDY_PATH_GROUP, iwc);
 					edit.maintainParameter(PARAMETER_SCHOOL, iwc);
-					edit.maintainParameter(PARAMETER_SCHOOL_SEASON, iwc);
+					edit.maintainParameter(PARAMETER_SCHOOL_SEASON_PK, iwc);
 
 					Link copy = new Link(getCopyIcon(localize("copy", "Copy")));
 					copy.addParameter(PARAMETER_COURSE_PK, course.getPrimaryKey().toString());
@@ -398,7 +398,7 @@ public class CourseEditor extends AdultEducationBlock {
 					copy.maintainParameter(PARAMETER_SCHOOL_TYPE, iwc);
 					copy.maintainParameter(PARAMETER_STUDY_PATH_GROUP, iwc);
 					copy.maintainParameter(PARAMETER_SCHOOL, iwc);
-					copy.maintainParameter(PARAMETER_SCHOOL_SEASON, iwc);
+					copy.maintainParameter(PARAMETER_SCHOOL_SEASON_PK, iwc);
 
 					Link delete = new Link(getDeleteIcon(localize("delete", "Delete")));
 					delete.addParameter(PARAMETER_COURSE_PK, course.getPrimaryKey().toString());
@@ -406,7 +406,7 @@ public class CourseEditor extends AdultEducationBlock {
 					delete.maintainParameter(PARAMETER_SCHOOL_TYPE, iwc);
 					delete.maintainParameter(PARAMETER_STUDY_PATH_GROUP, iwc);
 					delete.maintainParameter(PARAMETER_SCHOOL, iwc);
-					delete.maintainParameter(PARAMETER_SCHOOL_SEASON, iwc);
+					delete.maintainParameter(PARAMETER_SCHOOL_SEASON_PK, iwc);
 
 					if (row % 2 == 0) {
 						table.setRowColor(row, getZebraColor1());
@@ -444,7 +444,7 @@ public class CourseEditor extends AdultEducationBlock {
 	private void store(IWContext iwc) {
 		Object oldSeason = iwc.isParameterSet(PARAMETER_OLD_SCHOOL_SEASON) ? iwc.getParameter(PARAMETER_OLD_SCHOOL_SEASON)
 				: null;
-		String studyPath = iwc.isParameterSet(PARAMETER_STUDY_PATH) ? iwc.getParameter(PARAMETER_STUDY_PATH) : null;
+		String studyPath = iwc.isParameterSet(PARAMETER_STUDY_PATH_PK) ? iwc.getParameter(PARAMETER_STUDY_PATH_PK) : null;
 		String code = iwc.isParameterSet(PARAMETER_CODE) ? iwc.getParameter(PARAMETER_CODE) : null;
 		String oldCode = iwc.isParameterSet(PARAMETER_OLD_CODE) ? iwc.getParameter(PARAMETER_OLD_CODE) : null;
 		String startDate = iwc.isParameterSet(PARAMETER_START_DATE) ? iwc.getParameter(PARAMETER_START_DATE) : null;
@@ -590,8 +590,8 @@ public class CourseEditor extends AdultEducationBlock {
 				// iSchool =
 				// getBusiness().getSchoolBusiness().getSchool(iSchoolPK);
 			}
-			if (iwc.isParameterSet(PARAMETER_SCHOOL_SEASON)) {
-				this.iSchoolSeasonPK = iwc.getParameter(PARAMETER_SCHOOL_SEASON);
+			if (iwc.isParameterSet(PARAMETER_SCHOOL_SEASON_PK)) {
+				this.iSchoolSeasonPK = iwc.getParameter(PARAMETER_SCHOOL_SEASON_PK);
 				this.iSchoolSeason = getBusiness().getSchoolBusiness().getSchoolSeason(this.iSchoolSeasonPK);
 			}
 			if (iwc.isParameterSet(PARAMETER_STUDY_PATH_GROUP)) {
