@@ -49,30 +49,6 @@
     </developer>
   </developers>
   <dependencies>
-    <dependency>
-      <groupId>myfaces</groupId>
-      <artifactId>myfaces-jsf-api</artifactId>
-      <version>1.0.9</version>
-      <type>jar</type>
-      <url>http://java.sun.com/j2ee/javaserverfaces/</url>
-      <properties/>
-    </dependency>
-    <dependency>
-      <groupId>ejb</groupId>
-      <artifactId>ejb</artifactId>
-      <version>2.0</version>
-      <type>jar</type>
-      <url>http://java.sun.com/products/ejb/docs.html</url>
-      <properties/>
-    </dependency>
-    <dependency>
-      <groupId>servletapi</groupId>
-      <artifactId>servletapi</artifactId>
-      <version>2.4</version>
-      <type>jar</type>
-      <url>http://java.sun.com/products/servlet/docs.html</url>
-      <properties/>
-    </dependency>
    <dependency>
       <groupId>poi</groupId>
       <artifactId>poi</artifactId>
