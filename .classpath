@@ -9,7 +9,7 @@
   </classpathentry>
   <classpathentry kind="var" path="MAVEN_REPO/jta/jars/jta-spec1_0_1.jar">
   </classpathentry>
-  <classpathentry kind="var" path="MAVEN_REPO/ujac/jars/ujac-0.9.18.jar">
+  <classpathentry kind="var" path="MAVEN_REPO/ujac/jars/ujac-0.9.25.jar">
   </classpathentry>
   <classpathentry kind="src" path="/com.idega.core">
   </classpathentry>
