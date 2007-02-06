@@ -1,16 +1,5 @@
 package se.idega.idegaweb.commune.adulteducation.presentation;
 
-import java.rmi.RemoteException;
-import java.util.Collection;
-
-import javax.ejb.FinderException;
-import se.idega.idegaweb.commune.adulteducation.business.AdultEducationSession;
-
-import com.idega.business.IBOLookup;
-import com.idega.business.IBOLookupException;
-import com.idega.business.IBORuntimeException;
-import com.idega.idegaweb.IWUserContext;
-import com.idega.presentation.IWContext;
 
 /**
  * Title: PrintMessageViewer
@@ -18,38 +7,12 @@ import com.idega.presentation.IWContext;
  * Copyright:    Copyright idega Software (c) 2002
  * Company:	idega Software
  * @author <a href="mailto:roar@idega.is">roar</a>
- * @version $Id: PrintMessageViewer.java,v 1.1 2005/06/12 13:46:45 laddi Exp $
+ * @version $Id: PrintMessageViewer.java,v 1.2 2007/02/06 22:26:23 laddi Exp $
  * @since 17.3.2003 
  */
 
 public class PrintMessageViewer extends se.idega.idegaweb.commune.message.presentation.PrintMessageViewer {
 
-	private AdultEducationSession getSession(IWUserContext iwuc) {
-		try {
-			return (AdultEducationSession) IBOLookup.getSessionInstance(iwuc, AdultEducationSession.class);
-		}
-		catch (IBOLookupException ile) {
-			throw new IBORuntimeException(ile);
-		}
-	}
-
-	protected Collection getLetters(IWContext iwc)  throws FinderException {
-		try {
-			Collection unprintedLetters =
-				getPrintedLetter().findLettersByAdultEducation(
-						getSession(iwc).getSchool(),
-						getSearchSsn(),
-						getSearchMsgId(),
-						getUFrom(),
-						getUTo());
-			return unprintedLetters;
-		}
-		catch (RemoteException e) {
-			throw new FinderException(e.getMessage());
-		}
-		
-	}
-	
 //	private void viewMessages(String[] ids)
 //	throws FinderException {
 //		System.out.println("Viewing " + (ids==null?0:ids.length) + " messages");
