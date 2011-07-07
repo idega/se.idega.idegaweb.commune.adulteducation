@@ -1,9 +1,9 @@
 /*
  * $Id: AdultEducationChoiceBMPBean.java,v 1.14 2005/10/13 08:09:37 palli Exp $
  * Created on May 3, 2005
- * 
+ *
  * Copyright (C) 2005 Idega Software hf. All Rights Reserved.
- * 
+ *
  * This software is the proprietary information of Idega hf. Use is subject to
  * license terms.
  */
@@ -11,8 +11,11 @@ package se.idega.idegaweb.commune.adulteducation.data;
 
 import java.sql.Date;
 import java.util.Collection;
+
 import javax.ejb.FinderException;
+
 import se.idega.idegaweb.commune.adulteducation.AdultEducationConstants;
+
 import com.idega.block.process.data.AbstractCaseBMPBean;
 import com.idega.block.process.data.Case;
 import com.idega.block.school.data.SchoolSeason;
@@ -33,6 +36,8 @@ import com.idega.data.query.WildCardColumn;
 import com.idega.user.data.User;
 
 public class AdultEducationChoiceBMPBean extends AbstractCaseBMPBean implements Case, AdultEducationChoice {
+
+	private static final long serialVersionUID = 2000526983820143043L;
 
 	private static final String ENTITY_NAME = "comm_vux_choice";
 
@@ -74,18 +79,22 @@ public class AdultEducationChoiceBMPBean extends AbstractCaseBMPBean implements 
 
 	private static final String PACKAGE = "vux_school_package_id";
 
+	@Override
 	public String getCaseCodeKey() {
 		return AdultEducationConstants.ADULT_EDUCATION_CASE_CODE;
 	}
 
+	@Override
 	public String getCaseCodeDescription() {
 		return AdultEducationConstants.ADULT_EDUCATION_CASE_DESCRIPTION;
 	}
 
+	@Override
 	public String getEntityName() {
 		return ENTITY_NAME;
 	}
 
+	@Override
 	public void initializeAttributes() {
 		addGeneralCaseRelation();
 
@@ -113,6 +122,7 @@ public class AdultEducationChoiceBMPBean extends AbstractCaseBMPBean implements 
 		addManyToManyRelationShip(AdultEducationChoiceReason.class);
 	}
 
+	@Override
 	public void setDefaultValues() {
 		setGrantedRule1(false);
 		setGrantedRule2(false);
@@ -626,5 +636,15 @@ public class AdultEducationChoiceBMPBean extends AbstractCaseBMPBean implements 
 		query.addCriteria(new InCriteria(cases, "case_status", statuses));
 
 		return idoGetNumberOfRecords(query);
+	}
+
+	public void addSubscriber(User subscriber) throws IDOAddRelationshipException {
+	}
+
+	public Collection<User> getSubscribers() {
+		return null;
+	}
+
+	public void removeSubscriber(User subscriber) throws IDORemoveRelationshipException {
 	}
 }
